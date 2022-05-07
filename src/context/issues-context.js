@@ -13,12 +13,11 @@ const defaultIssuesState = {
 	activeSprintIssues: [],
 	backlog: [],
 	newIssue: {
-		title: "",
+		summary: "",
 		description: "",
 		assignee: "",
 		reporter: "",
 		category: "",
-		labels: [],
 		type: {
 			name: "",
 			icon: "",

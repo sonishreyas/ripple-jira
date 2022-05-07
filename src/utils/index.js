@@ -13,4 +13,8 @@ export {
 	addNewProject,
 	getProjects,
 } from "./project-management";
-export { addNewIssue, getIssues } from "./issues-management";
+export {
+	addNewIssue,
+	getIssues,
+	getIconForIssueType,
+} from "./issues-management";

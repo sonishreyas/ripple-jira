@@ -49,4 +49,14 @@ const getIssues = (projectId, issuesDispatch) => {
 	})();
 };
 
-export { addNewIssue, getIssues };
+const getIconForIssueType = (type) => {
+	switch (type) {
+		case "Bug":
+			return "fa-solid fa-square-exclamation";
+		case "Task":
+			return "fa-solid fa-square-check";
+		case "Story":
+			return "fa-solid fa-bookmark";
+	}
+};
+export { addNewIssue, getIssues, getIconForIssueType };

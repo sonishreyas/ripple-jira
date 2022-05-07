@@ -2,6 +2,7 @@ import { useProjects } from "context";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { CreateIssueButton } from ".";
+import { ToastContainer } from "react-toastify";
 const BoardContent = () => {
 	const { projectId } = useParams();
 	const { projectsState, projectsDispatch } = useProjects();
@@ -24,6 +25,7 @@ const BoardContent = () => {
 				<UserFilter/>
 				<AddCategoryButton />
 			</div> */}
+			<ToastContainer />
 		</main>
 	);
 };
