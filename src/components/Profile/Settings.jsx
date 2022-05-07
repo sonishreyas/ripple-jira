@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth, useLogin, useRegister } from "context";
+import { signOut } from "firebase/auth";
+import { auth } from "backend/firebase/firebase";
 
 const Settings = () => {
 	const { authDispatch } = useAuth();
@@ -11,6 +13,7 @@ const Settings = () => {
 		authDispatch({ type: "LOGOUT" });
 		loginDispatch({ type: "RESET" });
 		registerDispatch({ type: "RESET" });
+		signOut(auth);
 		navigate("/");
 	};
 	return (

@@ -1,22 +1,23 @@
 import {
 	createUserWithEmailAndPassword,
 	signInWithEmailAndPassword,
+	updateProfile,
 } from "firebase/auth";
 import { auth } from "backend/firebase/firebase";
 import { Navigate, useLocation } from "react-router-dom";
 import { useAuth } from "context";
-
+import { toast } from "react-toastify";
 const RequireAuth = ({ children }) => {
 	const location = useLocation();
 	const { authState } = useAuth();
-	return authState ? (
+	return authState.token ? (
 		children
 	) : (
 		<Navigate to="/auth" state={{ from: location }} replace />
 	);
 };
 
-const loginHandler = (e, loginState) => {
+const loginHandler = (e, loginState, navigate, location, authDispatch) => {
 	console.log(loginState);
 	e.preventDefault();
 	(async () => {
@@ -26,14 +27,35 @@ const loginHandler = (e, loginState) => {
 				loginState.email,
 				loginState.password
 			);
-			console.log("here", result);
+			const userData = {
+				token: result.user.accessToken,
+				name: result.user.displayName,
+				email: result.user.email,
+				avatar: result.user.displayName
+					.split(" ")
+					.reduce((prev, curr) => prev + curr[0].toUpperCase(), ""),
+			};
+			authDispatch({
+				type: "UPDATE_USER",
+				payload: userData,
+			});
+			toast.success("Login Successful!");
+			location?.state?.from?.pathname === "/"
+				? navigate("/projects")
+				: navigate(location?.state?.from?.pathname);
 		} catch (error) {
 			console.log(error);
 		}
 	})();
 };
 
-const registerHandler = (e, registerState) => {
+const registerHandler = (
+	e,
+	registerState,
+	navigate,
+	location,
+	authDispatch
+) => {
 	e.preventDefault();
 	(async () => {
 		try {
@@ -42,7 +64,26 @@ const registerHandler = (e, registerState) => {
 				registerState.email,
 				registerState.password
 			);
-			console.log("here", result);
+			const user = await updateProfile(auth.currentUser, {
+				displayName: registerState.firstName + " " + registerState.lastName,
+			});
+			console.log(result);
+			const userData = {
+				token: result.user.accessToken,
+				name: result.user.displayName,
+				email: result.user.email,
+				avatar: result.user.displayName
+					.split(" ")
+					.reduce((prev, curr) => prev + curr[0].toUpperCase(), ""),
+			};
+			authDispatch({
+				type: "UPDATE_USER",
+				payload: userData,
+			});
+			toast.success("User Registration Successful!");
+			location?.state?.from?.pathname === "/"
+				? navigate("/projects")
+				: navigate(location?.state?.from?.pathname);
 		} catch (error) {
 			console.log(error);
 		}

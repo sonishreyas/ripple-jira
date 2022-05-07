@@ -100,7 +100,6 @@ const authReducer = (authState, { type, payload }) => {
 			return { ...authState, ...payload };
 		case "LOGOUT":
 			return {
-				...authState,
 				token: "",
 				firstName: "",
 				lastName: "",

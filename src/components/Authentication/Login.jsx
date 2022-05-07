@@ -114,7 +114,9 @@ const Login = () => {
 			</button>
 			<button
 				className="primary-btn p-5 b-radius-2 my-5 mx-0 text-bold"
-				onClick={(e) => loginHandler(e, loginState)}
+				onClick={(e) =>
+					loginHandler(e, loginState, navigate, location, authDispatch)
+				}
 			>
 				Login
 			</button>

@@ -6,8 +6,8 @@ import { authReducer } from "reducers";
 const defaultAuthState = {
 	token: "",
 	email: "",
-	firstName: "",
-	lastName: "",
+	avatar: "",
+	name: "",
 };
 
 const AuthContext = createContext({ defaultAuthState });
@@ -20,7 +20,14 @@ const AuthProvider = ({ children }) => {
 				user &&
 					authDispatch({
 						type: "UPDATE_USER",
-						payload: user,
+						payload: {
+							token: user.accessToken,
+							name: user.displayName,
+							email: user.email,
+							avatar: user.displayName
+								.split(" ")
+								.reduce((prev, curr) => prev + curr[0].toUpperCase(), ""),
+						},
 					});
 			}),
 

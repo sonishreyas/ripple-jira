@@ -30,37 +30,18 @@ const Header = () => {
 					</Link>
 				</div>
 				<div className="social-icon-container flex-row align-center flex-gap-2">
-					<ul className="no-list spaced-list flex-row align-center flex-gap-2 mx-5">
-						<li className="header-nav-icons h-auto pr-2">
-							<NavLink to={"/"} className={getActiveClass}>
-								Home
-							</NavLink>
-						</li>
-						<li className="header-nav-icons h-auto pr-2">
-							<NavLink to={"/dashboard"} className={getActiveClass}>
-								Dashboard
-							</NavLink>
-						</li>
-						<li className="header-nav-icons h-auto pr-2">
-							<NavLink to={"/habits/all"} className={getActiveClass}>
-								My Habits
-							</NavLink>
-						</li>
-						<li className="header-nav-icons h-auto pr-2">
-							<NavLink to={"/profile"} className={getActiveClass}>
-								{authState.token ? "Profile" : "SignIn"}
-							</NavLink>
-						</li>
-						<li className="header-theme-small-icon h-auto pr-2">
-							<span className="social">
-								<i
-									className={`fas fa-${themeIcon} theme-icon social`}
-									aria-label="dark/light theme icon"
-									onClick={handleSetTheme}
-								></i>
-							</span>
-						</li>
-					</ul>
+					{authState.token && (
+						<Link to={"/profile"} className="no-link">
+							<p className="avatar b-radius-circle avatar-text flex-row justify-content-center align-center m cursor-pointer">
+								{authState.avatar}
+							</p>
+						</Link>
+					)}
+					<i
+						className={`fas fa-${themeIcon} theme-icon social`}
+						aria-label="dark/light theme icon"
+						onClick={handleSetTheme}
+					></i>
 				</div>
 			</div>
 		</header>

@@ -29,14 +29,9 @@ const Register = () => {
 
 	const handleSubmit = (e) => {
 		if (registerState.password !== registerState.confirmPassword) {
-			toast("Password should match");
+			toast.error("Password should match");
 		} else {
-			registerHandler(e, registerState);
-			// try {
-			// 	const result = await
-			// } catch (error) {
-
-			// }
+			registerHandler(e, registerState, navigate, location, authDispatch);
 		}
 	};
 	return (
