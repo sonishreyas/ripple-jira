@@ -1,4 +1,6 @@
 import { CreateProjectButton, ProjectsTable } from ".";
+import { ToastContainer } from "react-toastify";
+
 export const ProjectsContent = () => {
 	return (
 		<main className="main flex-column flex-gap-1">
@@ -7,6 +9,7 @@ export const ProjectsContent = () => {
 				<CreateProjectButton />
 			</div>
 			<ProjectsTable />
+			<ToastContainer />
 		</main>
 	);
 };

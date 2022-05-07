@@ -77,6 +77,18 @@
   grid-row: 1/13;
 }
 
+.project-form-container {
+  background: var(--secondary-background-color);
+  width: 32rem;
+}
+
+.project-form-container .basic-card {
+  background-color: var(--primary-color);
+}
+
+.project-form-container .textbox-label {
+  background-color: var(--primary-color);
+}
 @media screen and (max-width: 1180px) {
   .header-nav-icon {
       display: none;
