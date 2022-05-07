@@ -1,4 +1,8 @@
 import { AuthContent } from "components";
-const Authentication = () => <AuthContent />;
+import { useDocumentTitle } from "custom-hooks";
+const Authentication = () => {
+	useDocumentTitle("Auth | Ripple Jira");
+	return <AuthContent />;
+};
 
 export { Authentication };

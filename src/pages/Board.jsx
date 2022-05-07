@@ -1,3 +1,7 @@
 import { BoardContent } from "components";
-const Board = () => <BoardContent />;
+import { useDocumentTitle } from "custom-hooks";
+const Board = () => {
+	useDocumentTitle("Auth | Ripple Jira");
+	return <BoardContent />;
+};
 export { Board };

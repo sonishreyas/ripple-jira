@@ -1,4 +1,7 @@
 import { HomeContent } from "components";
-
-const Home = () => <HomeContent />;
+import { useDocumentTitle } from "custom-hooks";
+const Home = () => {
+	useDocumentTitle("Home | Ripple Jira");
+	return <HomeContent />;
+};
 export { Home };
