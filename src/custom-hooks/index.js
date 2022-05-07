@@ -1,0 +1,1 @@
+export { useDefineRootColorScheme } from "./getRootColorScheme";

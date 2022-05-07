@@ -1,0 +1,7 @@
+/* External Imports */
+@import url("https://ripple-ui.netlify.app/css/components.css");
+@import url('https://fonts.googleapis.com/css2?family=Urbanist&display=swap');
+
+/* Components */
+@import url("./index.css");
+@import url("./root-styles.css");
