@@ -26,7 +26,7 @@ const Header = () => {
 							alt="Logo of ripple UI"
 							className="brand-logo"
 						/>
-						<sub className="brand-name">Ripple Habits</sub>
+						<sub className="brand-name">Ripple Jira</sub>
 					</Link>
 				</div>
 				<div className="social-icon-container flex-row align-center flex-gap-2">

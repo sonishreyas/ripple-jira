@@ -4,10 +4,12 @@ import {
 } from "firebase/auth";
 import { auth } from "backend/firebase/firebase";
 import { Navigate, useLocation } from "react-router-dom";
+import { useAuth } from "context";
 
 const RequireAuth = ({ children }) => {
 	const location = useLocation();
-	return true ? (
+	const { authState } = useAuth();
+	return authState ? (
 		children
 	) : (
 		<Navigate to="/auth" state={{ from: location }} replace />
