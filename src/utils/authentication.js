@@ -72,6 +72,7 @@ const registerHandler = (
 				avatar: result.user.displayName
 					.split(" ")
 					.reduce((prev, curr) => prev + curr[0].toUpperCase(), ""),
+				uid: result.user.uid,
 			};
 			authDispatch({
 				type: "UPDATE_USER",

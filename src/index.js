@@ -12,6 +12,7 @@ import {
 	LoginProvider,
 	AuthProvider,
 	ProfileProvider,
+	ProjectsProvider,
 } from "./context";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -24,7 +25,9 @@ root.render(
 						<LoginProvider>
 							<AuthProvider>
 								<ProfileProvider>
-									<App />
+									<ProjectsProvider>
+										<App />
+									</ProjectsProvider>
 								</ProfileProvider>
 							</AuthProvider>
 						</LoginProvider>

@@ -27,10 +27,11 @@ const AuthProvider = ({ children }) => {
 							avatar: user.displayName
 								.split(" ")
 								.reduce((prev, curr) => prev + curr[0].toUpperCase(), ""),
+							uid: user.uid,
 						},
 					});
+				console.log(user);
 			}),
-
 		[]
 	);
 	return (
