@@ -13,6 +13,10 @@ const projectsReducer = (state, { type, payload }) => {
 			return { ...state };
 		case "RESET":
 			return {
+				newProject: {},
+			};
+		case "RESET":
+			return {
 				projectsData: [],
 				newProject: {},
 			};
