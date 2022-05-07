@@ -7,6 +7,10 @@ import {
 	where,
 } from "firebase/firestore";
 import { db } from "backend/firebase/firebase";
+
+const checkIfAdmin = (access, id) =>
+	access.find((item) => item.id === id).role === "admin" ? true : false;
+
 const addNewProject = (e, projectsState, projectsDispatch) => {
 	e.preventDefault();
 	console.log(projectsState);
@@ -49,4 +53,4 @@ const getProjects = (authState, projectsDispatch) => {
 	})();
 };
 
-export { addNewProject, getProjects };
+export { checkIfAdmin, addNewProject, getProjects };

@@ -1,4 +1,4 @@
-import { useProjects } from "context";
+import { useAuth, useProjects } from "context";
 import { addNewProject } from "utils";
 import { useState } from "react";
 import { toast } from "react-toastify";
@@ -6,19 +6,26 @@ import { toast } from "react-toastify";
 const NewProjectModal = () => {
 	const { setShowProjectsModal, projectsState, projectsDispatch } =
 		useProjects();
+	const { authState } = useAuth();
 	const [focus, setFocus] = useState(false);
 	const handleProjectModalDismiss = () => {
 		setShowProjectsModal(false);
 		projectsDispatch({
 			type: "RESET_FORM",
+			payload: {
+				newProject: {},
+			},
 		});
 	};
 	const handleSaveProject = (e) => {
-		if (projectsState.newProject.name.length) {
+		if (projectsState?.newProject?.name?.length) {
 			addNewProject(e, projectsState, projectsDispatch);
 			setShowProjectsModal(false);
 			projectsDispatch({
 				type: "RESET_FORM",
+				payload: {
+					newProject: {},
+				},
 			});
 			toast.success("Project created successfully!");
 		} else {
@@ -32,6 +39,21 @@ const NewProjectModal = () => {
 				newProject: {
 					name: e.target.value,
 					key: e.target.value.slice(0, 3).toUpperCase(),
+					lead: {
+						avatar: authState.avatar,
+						name: authState.name,
+					},
+					issueCount: 0,
+					categories: ["Backlog", "To Do", "In Progress", "Done"],
+					access: [
+						{
+							id: authState.uid,
+							avatar: authState.avatar,
+							name: authState.name,
+							role: "admin",
+						},
+					],
+					users: [authState.uid],
 				},
 			},
 		});
@@ -42,7 +64,7 @@ const NewProjectModal = () => {
 				<h3 className="p-2 my-2 mx-0 text-cta-color text-bold">
 					Create Project
 				</h3>
-				<form className="input-form flex-column flex-gap-1 flex-grow-1 flex-wrap">
+				<form className="input-form flex-column flex-gap-1 flex-grow-1 flex-wrap ">
 					<div className="basic-card b-radius-2 my-5">
 						<section
 							className={`input-container flex-column m-5 pr-10 ${
@@ -78,13 +100,28 @@ const NewProjectModal = () => {
 								type="text"
 								name="name"
 								value={projectsState?.newProject?.key}
-								readOnly={true}
 							/>
 							<label htmlFor="key" className="textbox-label m-0 px-1">
 								Key
 							</label>
 						</section>
 					</div>
+					<section className="card-footer flex-row flex-grow-1 justify-content-center flex-gap-1 py-5 px-0">
+						<button
+							className="cursor-pointer primary-btn save-btn p-5 b-radius-2 my-0 text-bold flex-grow-1"
+							type="button"
+							onClick={handleSaveProject}
+						>
+							Save
+						</button>
+						<button
+							className="cursor-pointer outline-btn cancel-btn p-5 b-radius-2 my-0 text-bold flex-grow-1"
+							type="button"
+							onClick={handleProjectModalDismiss}
+						>
+							Cancel
+						</button>
+					</section>
 				</form>
 			</div>
 		</div>

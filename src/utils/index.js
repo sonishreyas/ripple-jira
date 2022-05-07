@@ -6,4 +6,4 @@ export {
 	setTestHandler,
 	setFocusHandler,
 } from "./authentication";
-export { addNewProject, getProjects } from "./project-management";
+export { checkIfAdmin, addNewProject, getProjects } from "./project-management";

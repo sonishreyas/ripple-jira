@@ -1,8 +1,9 @@
-import { useProjects } from "context";
+import { useAuth, useProjects } from "context";
 import { Link } from "react-router-dom";
+import { checkIfAdmin } from "utils";
 export const ProjectsTable = () => {
 	const { projectsState } = useProjects();
-
+	const { authState } = useAuth();
 	return (
 		<table>
 			<thead>
@@ -13,9 +14,9 @@ export const ProjectsTable = () => {
 				</tr>
 			</thead>
 			<tbody>
-				{projectsState?.projectsData ? (
-					projectsState.projectsData.map(({ id, name, key, lead }) => (
-						<tr>
+				{projectsState?.projectsData.length ? (
+					projectsState.projectsData.map(({ id, name, key, lead, access }) => (
+						<tr key={id}>
 							<td>
 								<Link
 									to={`/project/${id}`}
@@ -31,6 +32,15 @@ export const ProjectsTable = () => {
 								</p>{" "}
 								<p> {lead.name}</p>
 							</td>
+							{checkIfAdmin(access, authState.uid) && (
+								<td>
+									<i
+										className="fa-solid fa-trash p-5 cursor-pointer social icons"
+										title="Delete Habit"
+										// onClick={(e) => handleDeleteHabit(e, _id)}
+									></i>
+								</td>
+							)}
 						</tr>
 					))
 				) : (
