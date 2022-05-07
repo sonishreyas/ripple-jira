@@ -6,3 +6,4 @@ export { AuthProvider, useAuth } from "./auth-context";
 export { ProfileProvider, useProfile } from "./profile-context";
 export { useProjects, ProjectsProvider } from "./projects-context";
 export { useIssues, IssuesProvider } from "./issues-context";
+export { useModal, ModalProvider } from "./modal-context";

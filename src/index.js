@@ -14,6 +14,7 @@ import {
 	ProfileProvider,
 	ProjectsProvider,
 	IssuesProvider,
+	ModalProvider,
 } from "./context";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -28,7 +29,9 @@ root.render(
 								<ProfileProvider>
 									<ProjectsProvider>
 										<IssuesProvider>
-											<App />
+											<ModalProvider>
+												<App />
+											</ModalProvider>
 										</IssuesProvider>
 									</ProjectsProvider>
 								</ProfileProvider>
