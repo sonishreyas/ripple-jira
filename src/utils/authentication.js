@@ -18,7 +18,6 @@ const RequireAuth = ({ children }) => {
 };
 
 const loginHandler = (e, loginState, navigate, location, authDispatch) => {
-	console.log(loginState);
 	e.preventDefault();
 	(async () => {
 		try {
