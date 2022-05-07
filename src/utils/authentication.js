@@ -6,7 +6,6 @@ import {
 import { auth } from "backend/firebase/firebase";
 import { Navigate, useLocation } from "react-router-dom";
 import { useAuth } from "context";
-import { toast } from "react-toastify";
 const RequireAuth = ({ children }) => {
 	const location = useLocation();
 	const { authState } = useAuth();
@@ -38,7 +37,6 @@ const loginHandler = (e, loginState, navigate, location, authDispatch) => {
 				type: "UPDATE_USER",
 				payload: userData,
 			});
-			toast.success("Login Successful!");
 			location?.state?.from?.pathname === "/"
 				? navigate("/projects")
 				: navigate(location?.state?.from?.pathname);
@@ -79,7 +77,6 @@ const registerHandler = (
 				type: "UPDATE_USER",
 				payload: userData,
 			});
-			toast.success("User Registration Successful!");
 			location?.state?.from?.pathname === "/"
 				? navigate("/projects")
 				: navigate(location?.state?.from?.pathname);
