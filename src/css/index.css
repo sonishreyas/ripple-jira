@@ -89,6 +89,14 @@
 .project-form-container .textbox-label {
   background-color: var(--primary-color);
 }
+.brand-logo {
+  height: 5rem;
+  width: 6rem;
+}
+.brand-name {
+  top: 1.8rem;
+  left: -6rem;
+}
 @media screen and (max-width: 1180px) {
   .header-nav-icon {
       display: none;

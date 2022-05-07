@@ -18,11 +18,11 @@ const NavBar = () => {
 						<li className="flex-row justify-content-space-between align-center rui-drawer-content rui-drawer-header">
 							<Link to={"/"} className="no-link">
 								<img
-									src="https://raw.githubusercontent.com/sonishreyas/rippleUI/dev/components/media/images/ripple-logo.png"
+									src="https://raw.githubusercontent.com/sonishreyas/ripple-jira/dev/src/backend/media/ripple-jira-logo.png"
 									alt="Logo of ripple UI"
 									className="brand-logo"
 								/>
-								<sub className="brand-name">Ripple Habits</sub>
+								<sub className="brand-name">Ripple Jira</sub>
 							</Link>
 							<section>
 								<i

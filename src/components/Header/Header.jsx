@@ -22,7 +22,7 @@ const Header = () => {
 					</section>
 					<Link to={"/"} className="no-link header-brand">
 						<img
-							src="https://raw.githubusercontent.com/sonishreyas/rippleUI/dev/components/media/images/ripple-logo.png"
+							src="https://raw.githubusercontent.com/sonishreyas/ripple-jira/dev/src/backend/media/ripple-jira-logo.png"
 							alt="Logo of ripple UI"
 							className="brand-logo"
 						/>
