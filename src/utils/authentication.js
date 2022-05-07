@@ -9,7 +9,7 @@ import { useAuth } from "context";
 const RequireAuth = ({ children }) => {
 	const location = useLocation();
 	const { authState } = useAuth();
-	return authState.token ? (
+	return JSON.parse(localStorage.getItem("user"))?.token ? (
 		children
 	) : (
 		<Navigate to="/auth" state={{ from: location }} replace />
@@ -37,6 +37,7 @@ const loginHandler = (e, loginState, navigate, location, authDispatch) => {
 				type: "UPDATE_USER",
 				payload: userData,
 			});
+			localStorage.setItem("user", JSON.stringify(userData));
 			location?.state?.from?.pathname === "/"
 				? navigate("/projects")
 				: navigate(location?.state?.from?.pathname);
@@ -78,6 +79,7 @@ const registerHandler = (
 				type: "UPDATE_USER",
 				payload: userData,
 			});
+			localStorage.setItem("user", JSON.stringify(userData));
 			location?.state?.from?.pathname === "/"
 				? navigate("/projects")
 				: navigate(location?.state?.from?.pathname);

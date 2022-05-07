@@ -22,6 +22,14 @@ export default function App() {
 					}
 				/>
 				<Route
+					path="/projects/:projectId"
+					element={
+						<RequireAuth>
+							<Board />
+						</RequireAuth>
+					}
+				/>
+				<Route
 					path="/profile"
 					element={
 						<RequireAuth>

@@ -1,35 +1,10 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useReducer, useEffect } from "react";
 import { projectsReducer } from "reducers";
+import { getProjects } from "utils";
+import { useAuth } from "./auth-context";
 const defaultProjectsState = {
-	projectsData: [
-		{
-			_id: "",
-			name: "",
-			key: "",
-			lead: {
-				avatar: "",
-				name: "",
-			},
-			issueCount: 1,
-			categories: ["Backlog", "To Do", "In Progress", "Done"],
-			users: [
-				{
-					avatar: "",
-					name: "",
-				},
-			],
-		},
-	],
-	newProject: {
-		name: "",
-		key: "",
-		lead: {
-			avatar: "",
-			name: "",
-		},
-		issueCount: 1,
-		categories: ["Backlog", "To Do", "In Progress", "Done"],
-	},
+	projectsData: [],
+	newProject: {},
 };
 
 const ProjectsContext = createContext({ defaultProjectsState });
@@ -39,6 +14,10 @@ const ProjectsProvider = ({ children }) => {
 		projectsReducer,
 		defaultProjectsState
 	);
+	const { authState } = useAuth();
+	useEffect(() => {
+		authState.token && getProjects(authState, projectsDispatch);
+	}, [authState]);
 	return (
 		<ProjectsContext.Provider value={{ projectsState, projectsDispatch }}>
 			{children}

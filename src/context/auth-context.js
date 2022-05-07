@@ -30,7 +30,6 @@ const AuthProvider = ({ children }) => {
 							uid: user.uid,
 						},
 					});
-				console.log(user);
 			}),
 		[]
 	);

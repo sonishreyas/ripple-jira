@@ -14,11 +14,11 @@ export const ProjectsTable = () => {
 			</thead>
 			<tbody>
 				{projectsState?.projectsData ? (
-					projectsState.projectsData.map(({ _id, name, key, lead }) => (
+					projectsState.projectsData.map(({ id, name, key, lead }) => (
 						<tr>
 							<td>
 								<Link
-									to={`/project/${_id}`}
+									to={`/project/${id}`}
 									className="no-link-decoration cursor-pointer"
 								>
 									{name}
