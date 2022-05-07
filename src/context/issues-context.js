@@ -5,31 +5,56 @@ import {
 	useEffect,
 	useState,
 } from "react";
-// import { issuesReducer } from "reducers";
-// import { getIssues } from "utils";
-// import { useAuth } from "./auth-context";
+import { issuesReducer } from "reducers";
+import { getIssues } from "utils";
+import { useAuth } from "./auth-context";
 const defaultIssuesState = {
 	issues: [],
-	newIssue: {},
+	activeSprintIssues: [],
+	backlog: [],
+	newIssue: {
+		title: "",
+		description: "",
+		assignee: "",
+		reporter: "",
+		category: "",
+		labels: [],
+		type: {
+			name: "",
+			icon: "",
+		},
+		projectId: "",
+		linkedIssues: [
+			{
+				issueInfo: {
+					id: "",
+					title: "",
+					type: "",
+				},
+				type: "",
+			},
+		],
+		subtasks: [{}],
+	},
 };
 
 const IssuesContext = createContext({ defaultIssuesState });
 
 const IssuesProvider = ({ children }) => {
-	// const [issuesState, issuesDispatch] = useReducer(
-	// 	issuesReducer,
-	// 	defaultIssuesState
-	// );
+	const [issuesState, issuesDispatch] = useReducer(
+		issuesReducer,
+		defaultIssuesState
+	);
 	const [showIssuesModal, setShowIssuesModal] = useState(false);
-	// const { authState } = useAuth();
-	// useEffect(() => {
-	// 	authState.token && getIssues(authState, issuesDispatch);
-	// }, [authState]);
+	const { authState } = useAuth();
+	useEffect(() => {
+		authState.token && getIssues(authState, issuesDispatch);
+	}, [authState]);
 	return (
 		<IssuesContext.Provider
 			value={{
-				// issuesState,
-				// issuesDispatch,
+				issuesState,
+				issuesDispatch,
 				showIssuesModal,
 				setShowIssuesModal,
 			}}

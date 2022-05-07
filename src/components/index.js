@@ -6,3 +6,4 @@ export { AuthContent } from "./Authentication";
 export { ProfileContent } from "./Profile";
 export { BoardContent } from "./Board";
 export { ProjectsContent, NewProjectModal, ConfirmModal } from "./Projects";
+export { NewIssueModal } from "./Issues";

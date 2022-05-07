@@ -5,8 +5,9 @@ import {
 	NavBar,
 	NewProjectModal,
 	ConfirmModal,
+	NewIssueModal,
 } from "./components";
-import { useModal, useNavbar, useProjects } from "./context";
+import { useIssues, useModal, useNavbar, useProjects } from "./context";
 import { RequireAuth } from "./utils";
 import { Routes, Route, Outlet } from "react-router-dom";
 
@@ -14,6 +15,7 @@ export default function App() {
 	const { showNavbar } = useNavbar();
 	const { showProjectsModal } = useProjects();
 	const { showModal } = useModal();
+	const { showIssuesModal } = useIssues();
 	return (
 		<div className="grid-container">
 			<Header />
@@ -57,6 +59,7 @@ export default function App() {
 			{showNavbar && <NavBar />}
 			{showProjectsModal && <NewProjectModal />}
 			{showModal && <ConfirmModal />}
+			{showIssuesModal && <NewIssueModal />}
 			<Footer />
 		</div>
 	);

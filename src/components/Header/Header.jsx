@@ -1,14 +1,14 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useAuth, useNavbar, useTheme } from "context";
 
 const Header = () => {
 	const { handleSetTheme, themeIcon } = useTheme();
 	const { setShowNavbar } = useNavbar();
 	const { authState } = useAuth();
-	const getActiveClass = ({ isActive }) =>
-		isActive
-			? "no-link cursor-pointer text-cta-color text-bold"
-			: "no-link cursor-pointer";
+	// const getActiveClass = ({ isActive }) =>
+	// 	isActive
+	// 		? "no-link cursor-pointer text-cta-color text-bold"
+	// 		: "no-link cursor-pointer";
 	const handleShowNavbar = () => setShowNavbar(true);
 	return (
 		<header className="header header-shadow flex-column">

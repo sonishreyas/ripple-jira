@@ -11,6 +11,11 @@ const projectsReducer = (state, { type, payload }) => {
 			};
 		case "DELETE_PROJECT":
 			return { ...state };
+		case "SET_SELECTED_PROJECT":
+			return {
+				...state,
+				selectedProject: payload.selectedProject,
+			};
 		case "RESET_FORM":
 			return {
 				...state,

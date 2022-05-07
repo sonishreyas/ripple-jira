@@ -79,7 +79,6 @@
 
 .project-form-container {
   background: var(--secondary-background-color);
-  width: 32rem;
 }
 
 .project-form-container .basic-card {
@@ -87,6 +86,18 @@
 }
 
 .project-form-container .textbox-label {
+  background-color: var(--primary-color);
+}
+
+.issue-form-container {
+  background: var(--secondary-background-color);
+}
+
+.issue-form-container .basic-card {
+  background-color: var(--primary-color);
+}
+
+.issue-form-container .textbox-label {
   background-color: var(--primary-color);
 }
 .brand-logo {

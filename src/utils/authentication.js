@@ -5,10 +5,9 @@ import {
 } from "firebase/auth";
 import { auth } from "backend/firebase/firebase";
 import { Navigate, useLocation } from "react-router-dom";
-import { useAuth } from "context";
+
 const RequireAuth = ({ children }) => {
 	const location = useLocation();
-	const { authState } = useAuth();
 	return JSON.parse(localStorage.getItem("user"))?.token ? (
 		children
 	) : (
@@ -62,10 +61,9 @@ const registerHandler = (
 				registerState.email,
 				registerState.password
 			);
-			const user = await updateProfile(auth.currentUser, {
+			await updateProfile(auth.currentUser, {
 				displayName: registerState.firstName + " " + registerState.lastName,
 			});
-			console.log(result);
 			const userData = {
 				token: result.user.accessToken,
 				name: result.user.displayName,

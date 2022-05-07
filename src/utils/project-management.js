@@ -11,9 +11,14 @@ import { db } from "backend/firebase/firebase";
 const checkIfAdmin = (access, id) =>
 	access.find((item) => item.id === id).role === "admin" ? true : false;
 
+const checkIfDeveloper = (access, id) =>
+	access.find((item) => item.id === id).role === "developer" ? true : false;
+
+const checkIfReadOnly = (access, id) =>
+	access.find((item) => item.id === id).role === "read-only" ? true : false;
+
 const addNewProject = (e, projectsState, projectsDispatch) => {
 	e.preventDefault();
-	console.log(projectsState);
 	(async () => {
 		try {
 			const newProjectRef = doc(collection(db, "projects"));
@@ -53,4 +58,10 @@ const getProjects = (authState, projectsDispatch) => {
 	})();
 };
 
-export { checkIfAdmin, addNewProject, getProjects };
+export {
+	checkIfAdmin,
+	checkIfDeveloper,
+	checkIfReadOnly,
+	addNewProject,
+	getProjects,
+};

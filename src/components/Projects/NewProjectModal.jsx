@@ -44,6 +44,7 @@ const NewProjectModal = () => {
 						name: authState.name,
 					},
 					issueCount: 0,
+					sprintCount: 0,
 					categories: ["Backlog", "To Do", "In Progress", "Done"],
 					access: [
 						{

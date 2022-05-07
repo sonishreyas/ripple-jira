@@ -11,6 +11,7 @@ import { useAuth } from "./auth-context";
 const defaultProjectsState = {
 	projectsData: [],
 	newProject: {},
+	selectedProject: {},
 };
 
 const ProjectsContext = createContext({ defaultProjectsState });

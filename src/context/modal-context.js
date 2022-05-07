@@ -1,12 +1,5 @@
-import {
-	createContext,
-	useContext,
-	useReducer,
-	useEffect,
-	useState,
-} from "react";
+import { createContext, useContext, useReducer, useState } from "react";
 import { modalReducer } from "reducers";
-import { useAuth } from "./auth-context";
 const defaultModalState = {
 	message: {},
 	handleConfirm: () => {},
@@ -21,7 +14,6 @@ const ModalProvider = ({ children }) => {
 		defaultModalState
 	);
 	const [showModal, setShowModal] = useState(false);
-	const { authState } = useAuth();
 
 	return (
 		<ModalContext.Provider
