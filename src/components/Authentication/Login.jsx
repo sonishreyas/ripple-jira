@@ -18,7 +18,12 @@ const Login = () => {
 		showPassword ? setShowPassword(false) : setShowPassword(true);
 
 	return (
-		<div className="input-form login flex-column flex-gap-1 flex-wrap h-auto w-100">
+		<form
+			className="input-form login flex-column flex-gap-1 flex-wrap h-auto w-100"
+			onSubmit={(e) =>
+				loginHandler(e, loginState, navigate, location, authDispatch)
+			}
+		>
 			<section
 				className={`input-container flex-column m-5 ${
 					loginState.email.length > 0 || loginState.focus.email ? "focused" : ""
@@ -112,15 +117,10 @@ const Login = () => {
 			>
 				Test Credentials
 			</button>
-			<button
-				className="primary-btn p-5 b-radius-2 my-5 mx-0 text-bold"
-				onClick={(e) =>
-					loginHandler(e, loginState, navigate, location, authDispatch)
-				}
-			>
+			<button className="primary-btn p-5 b-radius-2 my-5 mx-0 text-bold">
 				Login
 			</button>
-		</div>
+		</form>
 	);
 };
 
