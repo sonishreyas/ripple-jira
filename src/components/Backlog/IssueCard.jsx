@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 
 const IssueCard = ({ issueId }) => {
 	const { issuesState, issuesDispatch } = useIssues();
-	const issue = getIssuesFromId(issuesState.issues, issueId);
+	const issue = getIssuesFromId(issuesState.issuesData, issueId);
 	const { modalDispatch, setShowModal } = useModal();
 	const handleDeleteIssue = (e) => {
 		deleteIssue(e, issueId, issuesDispatch);
@@ -29,7 +29,7 @@ const IssueCard = ({ issueId }) => {
 	return (
 		<div className="flex-row justify-content-space-between align-center m-5">
 			<div
-				className="basic-card w-100 flex-row align-center justify-content-space-between m-5 p-10 flex-gap-1 b-radius-2 card-shadow"
+				className="basic-card w-100 flex-row align-center justify-content-space-between p-10 flex-gap-1 b-radius-2 card-shadow"
 				key={issueId}
 			>
 				<Link
@@ -37,12 +37,12 @@ const IssueCard = ({ issueId }) => {
 					className="no-link-decoration flex-row align-center flex-gap-1"
 				>
 					<span
-						className={`flex-row align-center flex-gap-1 ${issue.type.color}`}
+						className={`flex-row align-center flex-gap-1 ${issue?.type?.color}`}
 					>
 						<h1 className="text-bold b-radius-2">|</h1>
-						<i className={`${issue.type.icon} icons`}></i>
+						<i className={`${issue?.type?.icon} icons`}></i>
 					</span>
-					<h4 className="text-bold">{issue.summary}</h4>
+					<h4 className="text-bold">{issue?.summary}</h4>
 				</Link>
 				<div className="flex-row">
 					<i

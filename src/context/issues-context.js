@@ -7,7 +7,7 @@ import {
 } from "react";
 import { issuesReducer } from "reducers";
 import { getIssues } from "utils";
-import { useAuth } from "./auth-context";
+import { useProjects } from "./projects-context";
 const defaultIssuesState = {
 	issues: [],
 	newIssue: {
@@ -43,10 +43,12 @@ const IssuesProvider = ({ children }) => {
 		defaultIssuesState
 	);
 	const [showIssuesModal, setShowIssuesModal] = useState(false);
-	const { authState } = useAuth();
+	const { projectsState } = useProjects();
 	useEffect(() => {
-		authState.token && getIssues(authState, issuesDispatch);
-	}, [authState]);
+		projectsState.selectedProject !== undefined &&
+			getIssues(projectsState.selectedProject.id, issuesDispatch);
+	}, [projectsState]);
+
 	return (
 		<IssuesContext.Provider
 			value={{

@@ -148,6 +148,18 @@
 .border-bottom {
   border-bottom: 0.2rem solid var(--secondary-background-color);
 }
+
+.bug {
+  color: red;
+}
+
+.story {
+  color: yellow;
+}
+
+.task {
+  color: skyblue;
+}
 @media screen and (max-width: 1180px) {
   .header-nav-icon {
       display: none;

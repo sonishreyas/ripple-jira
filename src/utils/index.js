@@ -25,5 +25,6 @@ export {
 	getColorForIssueType,
 	updateIssue,
 	deleteIssue,
+	getIssuesByCategory,
 } from "./issues-management";
 export { addNewSprint, getSprints, updateSprint } from "./sprint-management";

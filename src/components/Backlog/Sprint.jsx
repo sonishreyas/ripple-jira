@@ -1,8 +1,6 @@
 import { useIssues, useProjects, useSprints } from "context";
 import { IssueCard, StartSprintButton } from ".";
 const Sprint = () => {
-	const { issuesState } = useIssues();
-	const { projectsState } = useProjects();
 	const { sprintsState } = useSprints();
 	return (
 		<>
