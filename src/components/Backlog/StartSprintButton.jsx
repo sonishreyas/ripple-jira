@@ -7,10 +7,14 @@ const StartSprintButton = ({ sprintId }) => {
 			type: "SET_ACTIVE_SPRINT",
 			payload: {
 				activeSprint: sprintsState?.sprintsData?.filter(
-					(item) => item == sprintId
-				)[0],
-				sprintsData: sprintsState?.sprintsData?.filter(
-					(item) => item !== sprintId
+					(item) => item === sprintId
+				)[0].id,
+				sprintsData: sprintsState?.sprintsData?.reduce(
+					(prev, curr) =>
+						curr.id === sprintId
+							? [...prev, { ...curr, status: "active" }]
+							: [...prev, ...curr],
+					[]
 				),
 			},
 		});

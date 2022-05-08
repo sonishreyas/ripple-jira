@@ -50,17 +50,25 @@ const getSprints = (sprintsDispatch) => {
 	})();
 };
 
-const updateSprint = (e, sprintId, updatedValue) => {
+const updateSprint = (e, sprintId, updatedValue, sprintsDispatch) => {
 	e.preventDefault();
 	console.log(sprintId);
 	(async () => {
 		try {
 			const sprintRef = doc(db, "sprints", sprintId);
 			await updateDoc(sprintRef, updatedValue);
+			sprintsDispatch({
+				type: "UPDATE_SPRINT",
+				payload: {
+					sprintsData: { id: sprintId, ...updatedValue },
+				},
+			});
 		} catch (error) {
 			console.log(error);
 		}
 	})();
 };
 
-export { addNewSprint, getSprints, updateSprint };
+const getSprintById = (activeId, data) =>
+	data.filter((item) => item.id === activeId)[0];
+export { addNewSprint, getSprints, updateSprint, getSprintById };

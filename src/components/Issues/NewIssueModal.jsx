@@ -94,7 +94,7 @@ const NewIssueModal = () => {
 				});
 				break;
 			case "ASSIGNEE":
-				e.target.value === "Unassigned"
+				e.target.value !== "Unassigned"
 					? issuesDispatch({
 							type: "NEW_ISSUE",
 							payload: {
@@ -112,7 +112,7 @@ const NewIssueModal = () => {
 								newIssue: {
 									assignee: {
 										name: "Unassigned",
-										avatar: `<i className="fa-solid fa-user"></i>`,
+										avatar: "fa-solid fa-user",
 									},
 								},
 							},
@@ -142,7 +142,7 @@ const NewIssueModal = () => {
 						subtasks: [],
 						assignee: {
 							name: "Unassigned",
-							avatar: `<i className="fa-solid fa-user"></i>`,
+							avatar: "fa-solid fa-user",
 						},
 						summary: "",
 						description: "",

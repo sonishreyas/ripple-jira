@@ -69,8 +69,10 @@ const updateProject = (e, projectId, updatedValue, projectsDispatch) => {
 			await updateDoc(projectRef, updatedValue);
 			projectsDispatch({
 				type: "UPDATE_PROJECT",
-				projectsData: { id: projectId, ...updatedValue },
-				selectedProject: { id: projectId, ...updatedValue },
+				payload: {
+					projectsData: { id: projectId, ...updatedValue },
+					selectedProject: { id: projectId, ...updatedValue },
+				},
 			});
 		} catch (error) {
 			console.log(error);
@@ -87,7 +89,9 @@ const deleteProject = (e, projectId, projectsDispatch) => {
 			await deleteDoc(projectRef);
 			projectsDispatch({
 				type: "DELETE_PROJECT",
-				projectsData: projectId,
+				payload: {
+					projectsData: projectId,
+				},
 			});
 		} catch (error) {
 			console.log(error);

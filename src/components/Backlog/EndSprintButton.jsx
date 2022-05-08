@@ -1,6 +1,11 @@
 import { useIssues, useModal, useProjects, useSprints } from "context";
 import { toast } from "react-toastify";
-import { addNewSprint, getIncompleteIssues, updateSprint } from "utils";
+import {
+	addNewSprint,
+	getIncompleteIssues,
+	getSprintById,
+	updateSprint,
+} from "utils";
 
 const EndSprintButton = () => {
 	const { issuesState, setShowIssuesModal } = useIssues();
@@ -8,24 +13,36 @@ const EndSprintButton = () => {
 	const { sprintsState, sprintsDispatch } = useSprints();
 	const { projectsState } = useProjects();
 	const handleCompleteSprint = (e) => {
+		const activeSprint = getSprintById(
+			sprintsState?.activeSprint,
+			sprintsState.sprintsData
+		);
 		const incompleteIssues = getIncompleteIssues(
-			sprintsState?.activeSprint?.issues,
+			activeSprint.issues,
 			issuesState.issuesData
 		);
 		const updatedSprint = {
-			issuesCount: sprintsState?.activeSprint?.issues.length,
-			issuesCompleted:
-				sprintsState?.activeSprint?.issues.length - incompleteIssues.length,
+			issuesCount: activeSprint.issues.length,
+			issuesCompleted: activeSprint.issues.length - incompleteIssues.length,
 			issuesIncomplet: incompleteIssues.length,
 			status: "completed",
 		};
-		updateSprint(e, sprintsState?.activeSprint?.id, updatedSprint);
+		updateSprint(e, activeSprint.id, updatedSprint);
 		const remainingSprints = sprintsState.sprintsData.filter(
-			(item) => item.id !== sprintsState?.activeSprint?.id
+			(item) => item.id !== activeSprint.id
 		);
 		sprintsDispatch({
 			type: "SPRINT_COMPLETED",
-			payload: { activeSprint: {} },
+			payload: {
+				activeSprint: "",
+				sprintsData: sprintsState?.sprintsData?.reduce(
+					(prev, curr) =>
+						curr.id === activeSprint?.id
+							? [...prev, { ...curr, status: "completed" }]
+							: [...prev, ...curr],
+					[]
+				),
+			},
 		});
 		if (remainingSprints.length > 1) {
 			updateSprint(e, remainingSprints[0].id, {

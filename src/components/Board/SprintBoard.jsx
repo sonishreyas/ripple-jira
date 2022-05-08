@@ -24,7 +24,10 @@ const SprintBoard = () => {
 								<h4>{item}</h4>
 								{filteredIssues.length &&
 									filteredIssues.map(({ id, summary }) => (
-										<div className="basic-card p-10 b-radius-1 issue-card"></div>
+										<div
+											className="basic-card p-10 b-radius-1 issue-card"
+											key={id}
+										></div>
 									))}
 							</div>
 						)

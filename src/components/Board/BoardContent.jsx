@@ -15,7 +15,6 @@ const BoardContent = () => {
 			payload: { selectedProject: selectedProject },
 		});
 	}, [selectedProject]);
-	console.log(projectsState);
 	return (
 		<main className="main flex-column flex-gap-1">
 			<div className="flex-row justify-content-space-between align-center">

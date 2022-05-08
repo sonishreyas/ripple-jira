@@ -27,13 +27,12 @@ const IssueCard = ({ issueId }) => {
 		setShowModal(true);
 	};
 
-	console.log(issue);
 	return (
-		<div className="flex-row justify-content-space-between align-center m-5">
-			<div
-				className="basic-card w-100 flex-row align-center justify-content-space-between p-10 flex-gap-1 b-radius-2 card-shadow"
-				key={issueId}
-			>
+		<div
+			className="flex-row justify-content-space-between align-center m-5"
+			key={issueId}
+		>
+			<div className="basic-card w-100 flex-row align-center justify-content-space-between p-10 flex-gap-1 b-radius-2 card-shadow">
 				<Link
 					to={`/issue/${issueId}`}
 					className="no-link-decoration flex-row align-center flex-gap-1"

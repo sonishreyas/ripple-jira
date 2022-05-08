@@ -1,3 +1,12 @@
+const updateSprintsData = (data, sprint) =>
+	data.reduce(
+		(prev, curr) =>
+			curr.id === sprint.id
+				? [...prev, { ...curr, ...sprint }]
+				: [...prev, ...curr],
+		[]
+	);
+
 const sprintsReducer = (state, { type, payload }) => {
 	switch (type) {
 		case "GET_SPRINTS":
@@ -6,6 +15,11 @@ const sprintsReducer = (state, { type, payload }) => {
 			return {
 				...state,
 				sprintsData: [...state.sprintsData, { ...payload.sprintsData }],
+			};
+		case "UPDATE_SPRINT":
+			return {
+				...state,
+				sprintsData: updateSprintsData(state.sprintsData, payload.sprintsData),
 			};
 		case "DELETE_SPRINT":
 			return { ...state };
@@ -16,7 +30,11 @@ const sprintsReducer = (state, { type, payload }) => {
 				sprintsData: payload.sprintsData,
 			};
 		case "SPRINT_COMPLETED":
-			return { ...state, activeSprint: payload.activeSprint };
+			return {
+				...state,
+				activeSprint: payload.activeSprint,
+				sprintsData: payload.sprintsData,
+			};
 		case "RESET":
 			return {
 				sprintsData: [],

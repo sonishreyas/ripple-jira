@@ -5,6 +5,7 @@ import {
 	Projects,
 	Board,
 	Backlog,
+	Settings,
 } from "./pages";
 import {
 	Header,
@@ -71,10 +72,18 @@ export default function App() {
 						</RequireAuth>
 					}
 				/>
+				<Route
+					path="/project/:projectId/settings"
+					element={
+						<RequireAuth>
+							<Settings />
+						</RequireAuth>
+					}
+				/>
 			</Routes>
 			<Outlet />
 			{showNavbar &&
-				location.pathname !== "/home" &&
+				location.pathname !== "/" &&
 				location.pathname !== "/projects" && <NavBar />}
 			{showProjectsModal && <NewProjectModal />}
 			{showModal && <ConfirmModal />}

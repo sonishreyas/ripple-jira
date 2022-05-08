@@ -27,4 +27,9 @@ export {
 	deleteIssue,
 	getIssuesByCategory,
 } from "./issues-management";
-export { addNewSprint, getSprints, updateSprint } from "./sprint-management";
+export {
+	addNewSprint,
+	getSprints,
+	updateSprint,
+	getSprintById,
+} from "./sprint-management";

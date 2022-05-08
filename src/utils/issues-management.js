@@ -116,10 +116,9 @@ const getIncompleteIssues = (currentIssues, issues) =>
 const getIssuesFromId = (issues, issueId) =>
 	issues.filter((item) => item.id === issueId);
 
-const getIssuesByCategory = (issues, category) => {
-	console.log(issues, category);
-	return issues.filter((issue) => issue.category === category);
-};
+const getIssuesByCategory = (issues, category) =>
+	issues.filter((issue) => issue.category === category);
+
 export {
 	addNewIssue,
 	getIssues,
