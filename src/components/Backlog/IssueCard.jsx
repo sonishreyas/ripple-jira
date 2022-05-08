@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 
 const IssueCard = ({ issueId }) => {
 	const { issuesState, issuesDispatch } = useIssues();
-	const issue = getIssuesFromId(issuesState.issuesData, issueId);
+	const issue = getIssuesFromId(issuesState.issuesData, issueId)[0];
 	const { modalDispatch, setShowModal } = useModal();
 	const handleDeleteIssue = (e) => {
 		deleteIssue(e, issueId, issuesDispatch);
@@ -26,6 +26,8 @@ const IssueCard = ({ issueId }) => {
 		});
 		setShowModal(true);
 	};
+
+	console.log(issue);
 	return (
 		<div className="flex-row justify-content-space-between align-center m-5">
 			<div
@@ -40,7 +42,7 @@ const IssueCard = ({ issueId }) => {
 						className={`flex-row align-center flex-gap-1 ${issue?.type?.color}`}
 					>
 						<h1 className="text-bold b-radius-2">|</h1>
-						<i className={`${issue?.type?.icon} icons`}></i>
+						<i className={`${issue?.type?.icon}`}></i>
 					</span>
 					<h4 className="text-bold">{issue?.summary}</h4>
 				</Link>

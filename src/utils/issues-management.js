@@ -58,7 +58,9 @@ const deleteIssue = (e, issueId, issuesDispatch) => {
 			await deleteDoc(issueRef);
 			issuesDispatch({
 				type: "DELETE_ISSUE",
-				issuesData: issueId,
+				payload: {
+					issuesData: issueId,
+				},
 			});
 		} catch (error) {
 			console.log(error);
@@ -73,7 +75,9 @@ const updateIssue = (e, issueId, updatedIssue, issuesDispatch) => {
 			await updateDoc(issueRef, updatedIssue);
 			issuesDispatch({
 				type: "UPDATE_ISSUE",
-				issuesData: { id: issueId, ...updatedIssue },
+				payload: {
+					issuesData: { id: issueId, ...updatedIssue },
+				},
 			});
 		} catch (error) {
 			console.log(error);
@@ -83,7 +87,7 @@ const updateIssue = (e, issueId, updatedIssue, issuesDispatch) => {
 const getIconForIssueType = (type) => {
 	switch (type) {
 		case "Bug":
-			return "fa-solid fa-square-exclamation";
+			return "fa-solid fa-circle-exclamation";
 		case "Task":
 			return "fa-solid fa-square-check";
 		case "Story":

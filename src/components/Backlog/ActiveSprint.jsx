@@ -1,13 +1,27 @@
-import { useIssues, useProjects } from "context";
-import { EndSprintButton } from ".";
+import { useIssues, useProjects, useSprints } from "context";
+import { EndSprintButton, IssueCard } from ".";
 const ActiveSprint = () => {
-	const { issuesState } = useIssues();
-	const { projectsState } = useProjects();
+	const { sprintsState } = useSprints();
+	console.log(sprintsState);
 	return (
-		<div className="flex-row justify-content-space-between align-center border-bottom py-5">
-			<h4>ActiveSprint </h4>
-			<EndSprintButton />
-		</div>
+		<>
+			{Object.keys(sprintsState?.activeSprint).length ? (
+				<>
+					<div className="flex-row justify-content-space-between align-center border-bottom py-5">
+						<h4>{sprintsState?.activeSprint?.name}</h4>
+						<EndSprintButton />
+					</div>
+					<div className="flex-column justify-content-start align-center flex-gap-1">
+						{sprintsState?.activeSprint?.issues?.length &&
+							sprintsState?.activeSprint?.issues.map((item) => (
+								<IssueCard issueId={item.id} />
+							))}
+					</div>
+				</>
+			) : (
+				<></>
+			)}
+		</>
 	);
 };
 export { ActiveSprint };

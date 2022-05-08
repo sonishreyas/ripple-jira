@@ -1,10 +1,15 @@
 import { useAuth, useIssues, useProjects } from "context";
 import { useState, useEffect } from "react";
-import { addNewIssue, getIconForIssueType, getColorForIssueType } from "utils";
+import {
+	addNewIssue,
+	getIconForIssueType,
+	getColorForIssueType,
+	updateProject,
+} from "utils";
 import { toast } from "react-toastify";
 const NewIssueModal = () => {
 	const { setShowIssuesModal, issuesState, issuesDispatch } = useIssues();
-	const { projectsState } = useProjects();
+	const { projectsState, projectsDispatch } = useProjects();
 	const [focus, setFocus] = useState(false);
 	const [focusDescription, setFocusDescription] = useState(false);
 	const { authState } = useAuth();
@@ -20,6 +25,14 @@ const NewIssueModal = () => {
 	const handleSaveIssue = (e) => {
 		if (issuesState?.newIssue?.summary.length) {
 			addNewIssue(e, issuesState, issuesDispatch);
+			updateProject(
+				e,
+				projectsState?.selectedProject?.id,
+				{
+					issueCount: projectsState?.selectedProject?.issueCount + 1,
+				},
+				projectsDispatch
+			);
 			toast.success("Issue created successfully");
 			setShowIssuesModal(false);
 			issuesDispatch({
@@ -133,7 +146,7 @@ const NewIssueModal = () => {
 						},
 						summary: "",
 						description: "",
-						id:
+						issueKey:
 							projectsState.selectedProject.key +
 							"-" +
 							projectsState.selectedProject.issueCount,

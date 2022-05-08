@@ -9,7 +9,6 @@ const Backlog = () => {
 		issuesState?.issuesData?.length &&
 			setIssues(getIssuesByCategory(issuesState?.issuesData, "Backlog"));
 	}, [issuesState]);
-	console.log(issuesState);
 	return (
 		<div className="flex-column justify-content-start">
 			<div className="flex-row justify-content-space-between align-center border-bottom py-5">

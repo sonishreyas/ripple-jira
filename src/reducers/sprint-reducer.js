@@ -13,6 +13,7 @@ const sprintsReducer = (state, { type, payload }) => {
 			return {
 				...state,
 				activeSprint: payload.activeSprint,
+				sprintsData: payload.sprintsData,
 			};
 		case "SPRINT_COMPLETED":
 			return { ...state, activeSprint: payload.activeSprint };

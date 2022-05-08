@@ -1,5 +1,5 @@
 const deleteIssueData = (issues, deletedIssue) =>
-	issues.filter((item) => item._id !== deletedIssue);
+	issues.filter((item) => item.id !== deletedIssue);
 
 const issuesReducer = (state, { type, payload }) => {
 	switch (type) {

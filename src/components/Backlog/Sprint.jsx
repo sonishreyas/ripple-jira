@@ -4,7 +4,7 @@ const Sprint = () => {
 	const { sprintsState } = useSprints();
 	return (
 		<>
-			{sprintsState?.sprintsData?.length &&
+			{sprintsState?.sprintsData?.length ? (
 				sprintsState?.sprintsData?.map(({ id, name, issues }) => (
 					<div
 						className="flex-column justify-content-start align-center"
@@ -13,7 +13,7 @@ const Sprint = () => {
 						<div className="flex-row justify-content-space-between align-center border-bottom py-5">
 							<h4>{name}</h4>
 							{!Object.keys(sprintsState?.activeSprint).length && (
-								<StartSprintButton />
+								<StartSprintButton sprintId={id} />
 							)}
 						</div>
 						<div
@@ -25,7 +25,10 @@ const Sprint = () => {
 							))}
 						</div>
 					</div>
-				))}
+				))
+			) : (
+				<></>
+			)}
 		</>
 	);
 };

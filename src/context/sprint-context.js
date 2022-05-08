@@ -11,11 +11,7 @@ import { useAuth } from "./auth-context";
 const defaultSprintsState = {
 	sprintsData: [],
 	newSprit: {},
-	activeSprint: {
-		id: "SPRINT 1",
-		issues: [],
-		status: "active",
-	},
+	activeSprint: {},
 };
 
 const SprintsContext = createContext({ defaultSprintsState });
