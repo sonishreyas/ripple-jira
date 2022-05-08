@@ -10,7 +10,7 @@
 Create your first issue now.
 
   <br />
-  <a href="https://ripple-ui.netlify.app/components/installation/installation.html"><strong>Get Started</strong></a>
+  <a href="https://ripple-jira.netlify.app/"><strong>Get Started</strong></a>
   <br />
   <br />
     <a href="https://github.com/sonishreyas/ripple-jira/issues/new?assignees=&labels=bug&template=01_BUG_REPORT.md&title=bug%3A+">Report a Bug</a>
