@@ -1,9 +1,9 @@
 import { Link, NavLink } from "react-router-dom";
-import { useAuth, useProjects } from "../../context";
+import { useAuth, useNavbar, useProjects } from "../../context";
 const NavBar = () => {
 	const { authState } = useAuth();
 	const { projectsState } = useProjects();
-
+	const { setShowNavbar } = useNavbar();
 	const getActiveClass = ({ isActive }) =>
 		isActive
 			? "text-cta-color rui-drawer-links navbar-rp-section"
@@ -11,7 +11,7 @@ const NavBar = () => {
 	return (
 		<nav className="nav nav-shadow navbar-rp">
 			<ul className="rui-drawer-content--list no-list">
-				<li className="flex-row justify-content-space-between align-center rui-drawer-content rui-drawer-header display-inactive">
+				<li className="flex-row justify-content-space-between align-center rui-drawer-content rui-drawer-header">
 					<section>
 						<img
 							src="https://raw.githubusercontent.com/sonishreyas/ripple-jira/dev/src/backend/media/ripple-jira-logo.png"
@@ -20,7 +20,7 @@ const NavBar = () => {
 						/>
 						<sub className="brand-name">Ripple Jira</sub>
 					</section>
-					<section>
+					<section onClick={() => setShowNavbar(false)}>
 						<i className="fas fa-angle-left close-drawer"></i>
 					</section>
 				</li>

@@ -160,6 +160,10 @@
 .task {
   color: skyblue;
 }
+
+.rui-drawer-header {
+  display: none;
+}
 @media screen and (max-width: 1180px) {
   .header-nav-icon {
       display: none;
@@ -197,6 +201,9 @@
   }
   .header-nav-icons {
     display: none;
+  }
+  .rui-drawer-header {
+    display: flex;
   }
   .grid-container .nav {
 		height: 100%;

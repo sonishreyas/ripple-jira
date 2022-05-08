@@ -8,6 +8,8 @@ const NavbarProvider = ({ children }) => {
 		if (window.innerWidth <= 768) {
 			setShowNavbar(false);
 			window.addEventListener("resize", () => setShowNavbar(false));
+		} else if (window.innerWidth > 768) {
+			window.addEventListener("resize", () => setShowNavbar(true));
 		} else setShowNavbar(true);
 	}, []);
 	return (
