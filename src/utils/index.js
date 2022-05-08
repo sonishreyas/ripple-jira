@@ -12,6 +12,7 @@ export {
 	checkIfReadOnly,
 	addNewProject,
 	getProjects,
+	updateProject,
 } from "./project-management";
 export {
 	addNewIssue,
@@ -19,3 +20,4 @@ export {
 	getIconForIssueType,
 	getActiveSprintIssues,
 } from "./issues-management";
+export { addNewSprint, getSprints } from "./sprint-management";

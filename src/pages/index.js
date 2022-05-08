@@ -3,3 +3,4 @@ export { Profile } from "./Profile";
 export { Authentication } from "./Authentication";
 export { Projects } from "./Projects";
 export { Board } from "./Board";
+export { Backlog } from "./Backlog";

@@ -7,7 +7,12 @@ const SprintBoard = () => {
 	const { projectsState } = useProjects();
 	const { issuesState } = useIssues();
 	const [filteredIssues, setFilteredIssues] = useState(
-		getActiveSprintIssues(issuesState.activeSprintIssues, issuesState.issues)
+		issuesState.activeSprintIssues
+			? getActiveSprintIssues(
+					issuesState.activeSprintIssues,
+					issuesState.issues
+			  )
+			: []
 	);
 	return (
 		<div className="flex-row justify-content-space-between align-center flex-gap-1">

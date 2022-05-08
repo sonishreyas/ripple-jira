@@ -140,6 +140,14 @@
   background-color: var(--primary-color);
   color: var(--secondary-color);
 }
+
+.all-grid-columns {
+  grid-column: 1/13 !important;
+}
+
+.border-bottom {
+  border-bottom: 0.2rem solid var(--secondary-background-color);
+}
 @media screen and (max-width: 1180px) {
   .header-nav-icon {
       display: none;
@@ -149,6 +157,7 @@
     grid-column: 1/6;
     grid-row: 2/12;
     background: var(--primary-color);
+    visibility: visible;
   }
   .grid-container .main {
     grid-column: 3/13;
@@ -156,6 +165,9 @@
     min-height: 100vh;
     max-height: max-content;
     overflow: visible;
+  }
+  .all-grid-columns {
+    grid-column: 1/13;
   }
 }
 .header-theme-small-icon {

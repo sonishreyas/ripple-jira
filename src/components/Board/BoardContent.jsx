@@ -15,10 +15,14 @@ const BoardContent = () => {
 			payload: { selectedProject: selectedProject },
 		});
 	}, [selectedProject]);
+	console.log(projectsState);
 	return (
 		<main className="main flex-column flex-gap-1">
 			<div className="flex-row justify-content-space-between align-center">
-				<h2>{selectedProject.name}</h2>
+				<h2>
+					{projectsState.selectedProject &&
+						projectsState?.selectedProject?.name}
+				</h2>
 				<CreateIssueButton />
 			</div>
 			<SprintBoard />

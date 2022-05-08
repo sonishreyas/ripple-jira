@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const HomeContent = () => {
 	return (
-		<main className="main flex-row align-center justify-content-center">
+		<main className="main flex-row align-center justify-content-center all-grid-columns">
 			<div className="flex-column align-center text-center justify-content-ceter h-100">
 				<div className="homepage-heading">
 					Manage your projects <i className="text-cta-color">better</i>{" "}

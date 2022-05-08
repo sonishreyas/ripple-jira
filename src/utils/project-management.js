@@ -5,6 +5,7 @@ import {
 	setDoc,
 	getDocs,
 	where,
+	updateDoc,
 } from "firebase/firestore";
 import { db } from "backend/firebase/firebase";
 
@@ -58,10 +59,25 @@ const getProjects = (authState, projectsDispatch) => {
 	})();
 };
 
+const updateProject = (e, projectId, updatedValue) => {
+	e.preventDefault();
+	console.log(projectId);
+	(async () => {
+		try {
+			const projectRef = doc(db, "projects", projectId);
+			await updateDoc(projectRef, updatedValue);
+			console.log(projectRef);
+		} catch (error) {
+			console.log(error);
+		}
+	})();
+};
+
 export {
 	checkIfAdmin,
 	checkIfDeveloper,
 	checkIfReadOnly,
 	addNewProject,
 	getProjects,
+	updateProject,
 };

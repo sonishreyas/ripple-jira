@@ -14,9 +14,7 @@ const Profile = () => {
 							<tbody className="w-100">
 								<tr className="table-row m-3 w-100 h-auto">
 									<th className="table-head p-3">Name</th>
-									<td className="table-data p-3">
-										{authState.firstName} {authState.lastName}
-									</td>
+									<td className="table-data p-3">{authState.name}</td>
 								</tr>
 								<tr className="table-row m-3 w-100">
 									<th className="table-head p-3">Email</th>

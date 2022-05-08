@@ -1,4 +1,11 @@
-import { Home, Authentication, Profile, Projects, Board } from "./pages";
+import {
+	Home,
+	Authentication,
+	Profile,
+	Projects,
+	Board,
+	Backlog,
+} from "./pages";
 import {
 	Header,
 	Footer,
@@ -9,13 +16,15 @@ import {
 } from "./components";
 import { useIssues, useModal, useNavbar, useProjects } from "./context";
 import { RequireAuth } from "./utils";
-import { Routes, Route, Outlet } from "react-router-dom";
+import { Routes, Route, Outlet, useLocation } from "react-router-dom";
 
 export default function App() {
 	const { showNavbar } = useNavbar();
 	const { showProjectsModal } = useProjects();
 	const { showModal } = useModal();
 	const { showIssuesModal } = useIssues();
+	const location = useLocation();
+
 	return (
 		<div className="grid-container">
 			<Header />
@@ -54,9 +63,19 @@ export default function App() {
 						</RequireAuth>
 					}
 				/>
+				<Route
+					path="/project/:projectId/backlog"
+					element={
+						<RequireAuth>
+							<Backlog />
+						</RequireAuth>
+					}
+				/>
 			</Routes>
 			<Outlet />
-			{showNavbar && <NavBar />}
+			{showNavbar &&
+				location.pathname !== "/home" &&
+				location.pathname !== "/projects" && <NavBar />}
 			{showProjectsModal && <NewProjectModal />}
 			{showModal && <ConfirmModal />}
 			{showIssuesModal && <NewIssueModal />}

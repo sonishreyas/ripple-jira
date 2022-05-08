@@ -3,7 +3,7 @@ import { useAuth, useProjects } from "../../context";
 const NavBar = () => {
 	const { authState } = useAuth();
 	const { projectsState } = useProjects();
-	const projectId = projectsState.selectedProject.id;
+
 	const getActiveClass = ({ isActive }) =>
 		isActive
 			? "text-cta-color rui-drawer-links navbar-rp-section"
@@ -45,36 +45,45 @@ const NavBar = () => {
 					</NavLink>
 				</li>
 				<li className="rui-drawer-content m-10">
-					<NavLink to={`/project/${projectId}`} className={getActiveClass}>
-						<span>
-							<i className="fa-solid fa-bars-staggered"></i>
-						</span>
-						<span className="rui-drawer-content--text p-2 text-center">
-							Board
-						</span>
-					</NavLink>
+					{projectsState?.selectedProject && (
+						<NavLink
+							to={`/project/${projectsState?.selectedProject?.id}`}
+							className={getActiveClass}
+						>
+							<span>
+								<i className="fa-solid fa-bars-staggered"></i>
+							</span>
+							<span className="rui-drawer-content--text p-2 text-center">
+								Board
+							</span>
+						</NavLink>
+					)}
 				</li>
 				<li className="rui-drawer-content m-10">
-					<NavLink
-						to={`/project/${projectId}/backlog`}
-						className={getActiveClass}
-					>
-						<span>
-							<i className="fa-solid fa-bars-progress"></i>
-						</span>
-						<span className="rui-drawer-content--text p-2">Backlog</span>
-					</NavLink>
+					{projectsState?.selectedProject && (
+						<NavLink
+							to={`/project/${projectsState?.selectedProject?.id}/backlog`}
+							className={getActiveClass}
+						>
+							<span>
+								<i className="fa-solid fa-bars-progress"></i>
+							</span>
+							<span className="rui-drawer-content--text p-2">Backlog</span>
+						</NavLink>
+					)}
 				</li>
 				<li className="rui-drawer-content m-10">
-					<NavLink
-						to={`/project/${projectId}/settings`}
-						className={getActiveClass}
-					>
-						<span>
-							<i className="fa-solid fa-gear"></i>
-						</span>
-						<span className="rui-drawer-content--text p-2">Settings</span>
-					</NavLink>
+					{projectsState?.selectedProject && (
+						<NavLink
+							to={`/project/${projectsState?.selectedProject?.id}/settings`}
+							className={getActiveClass}
+						>
+							<span>
+								<i className="fa-solid fa-gear"></i>
+							</span>
+							<span className="rui-drawer-content--text p-2">Settings</span>
+						</NavLink>
+					)}
 				</li>
 			</ul>
 		</nav>
