@@ -1,8 +1,8 @@
 import { useDocumentTitle } from "custom-hooks";
-
+import { SettingsContent } from "components";
 const Settings = () => {
 	useDocumentTitle("Project Settings | Ripple Jira");
-	return <h1>Settings</h1>;
+	return <SettingsContent />;
 };
 
 export { Settings };

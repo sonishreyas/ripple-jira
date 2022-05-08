@@ -77,7 +77,7 @@ const NewIssueModal = () => {
 							type: {
 								name: e.target.value,
 								icon: getIconForIssueType(e.target.value),
-								color: getColorForIssueType("Bug"),
+								color: getColorForIssueType(e.target.value),
 							},
 						},
 					},

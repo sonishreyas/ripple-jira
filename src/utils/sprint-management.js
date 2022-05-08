@@ -56,7 +56,6 @@ const getSprints = (projectId, sprintsDispatch) => {
 };
 
 const updateSprint = (sprintId, updatedValue, sprintsDispatch) => {
-	console.log(sprintId);
 	(async () => {
 		try {
 			const sprintRef = doc(db, "sprints", sprintId);
