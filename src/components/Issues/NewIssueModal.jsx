@@ -150,13 +150,12 @@ const NewIssueModal = () => {
 							projectsState.selectedProject.key +
 							"-" +
 							projectsState.selectedProject.issueCount,
+						category: "Backlog",
 					},
 				},
 			}),
 		[]
 	);
-
-	console.log(issuesState);
 
 	return (
 		<div className="modal flex-row justify-content-center align-center">
@@ -245,7 +244,14 @@ const NewIssueModal = () => {
 							className={`input-container flex-column m-5 focused`}
 							key="new-issue-category"
 						>
-							<select
+							<section className="flex-row justify-content-start align-center flex-gap-1 textbox-content p-5 w-100">
+								<p> Backlog</p>
+							</section>
+							<label htmlFor="reporter" className="textbox-label m-0 px-1">
+								Category
+							</label>
+						</section>
+						{/* <select
 								name="issue-category"
 								id="issue-category"
 								className="textbox-content p-5"
@@ -254,14 +260,14 @@ const NewIssueModal = () => {
 								{projectsState?.selectedProject?.categories.map((item) => (
 									<option value={item}>{item}</option>
 								))}
-							</select>
-							<label
+							</select> */}
+						{/* <label
 								htmlFor="issue-category"
 								className="textbox-label m-0 px-1"
 							>
 								Category
 							</label>
-						</section>
+						</section> */}
 						<section
 							className={`input-container flex-column m-5 focused`}
 							key="new-issue-assignee"

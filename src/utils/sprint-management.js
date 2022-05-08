@@ -30,7 +30,6 @@ const addNewSprint = (e, newSprint, sprintsDispatch) => {
 const getSprints = (projectId, sprintsDispatch) => {
 	(async () => {
 		try {
-			console.log(projectId);
 			const q = query(
 				collection(db, "sprints"),
 				where("projectId", "==", projectId)

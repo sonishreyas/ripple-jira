@@ -1,6 +1,13 @@
 const deleteIssueData = (issues, deletedIssue) =>
 	issues.filter((item) => item.id !== deletedIssue);
-
+const updateIssueData = (data, newData) =>
+	data.reduce(
+		(prev, curr) =>
+			curr.id === newData.id
+				? [...prev, { ...curr, ...newData }]
+				: [...prev, { ...curr }],
+		[]
+	);
 const issuesReducer = (state, { type, payload }) => {
 	switch (type) {
 		case "GET_ISSUES":
@@ -16,6 +23,11 @@ const issuesReducer = (state, { type, payload }) => {
 			return {
 				...state,
 				issuesData: deleteIssueData(state.issuesData, payload.issuesData),
+			};
+		case "UPDATE_ISSUE":
+			return {
+				...state,
+				issuesData: updateIssueData(state.issuesData, payload.issuesData),
 			};
 		case "SET_SELECTED_ISSUE":
 			return {

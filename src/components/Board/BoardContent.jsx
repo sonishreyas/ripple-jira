@@ -6,9 +6,10 @@ import { ToastContainer } from "react-toastify";
 const BoardContent = () => {
 	const { projectId } = useParams();
 	const { projectsState, projectsDispatch } = useProjects();
-	const selectedProject = projectsState.projectsData.find(
+	const selectedProject = projectsState.projectsData.filter(
 		({ id }) => id === projectId
-	);
+	)[0];
+
 	useEffect(() => {
 		projectsDispatch({
 			type: "SET_SELECTED_PROJECT",

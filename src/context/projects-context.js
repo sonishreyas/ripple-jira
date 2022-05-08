@@ -24,7 +24,8 @@ const ProjectsProvider = ({ children }) => {
 	const [showProjectsModal, setShowProjectsModal] = useState(false);
 	const { authState } = useAuth();
 	useEffect(() => {
-		authState.token && getProjects(authState, projectsDispatch);
+		JSON.parse(localStorage.getItem("user"))?.token &&
+			getProjects(JSON.parse(localStorage.getItem("user")), projectsDispatch);
 	}, [authState]);
 	return (
 		<ProjectsContext.Provider
