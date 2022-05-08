@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
+import ReactDOM from "react-dom";
 import "css/components.css";
 import "react-toastify/dist/ReactToastify.css";
 import App from "./App";
@@ -15,10 +15,10 @@ import {
 	ProjectsProvider,
 	IssuesProvider,
 	ModalProvider,
+	SprintsProvider,
 } from "./context";
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
+ReactDOM.render(
 	<React.StrictMode>
 		<Router>
 			<ThemeProvider>
@@ -30,7 +30,9 @@ root.render(
 									<ProjectsProvider>
 										<IssuesProvider>
 											<ModalProvider>
-												<App />
+												<SprintsProvider>
+													<App />
+												</SprintsProvider>
 											</ModalProvider>
 										</IssuesProvider>
 									</ProjectsProvider>
@@ -41,7 +43,8 @@ root.render(
 				</NavbarProvider>
 			</ThemeProvider>
 		</Router>
-	</React.StrictMode>
+	</React.StrictMode>,
+	document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function

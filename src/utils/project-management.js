@@ -5,15 +5,22 @@ import {
 	setDoc,
 	getDocs,
 	where,
+	updateDoc,
+	deleteDoc,
 } from "firebase/firestore";
 import { db } from "backend/firebase/firebase";
 
 const checkIfAdmin = (access, id) =>
 	access.find((item) => item.id === id).role === "admin" ? true : false;
 
+const checkIfDeveloper = (access, id) =>
+	access.find((item) => item.id === id).role === "developer" ? true : false;
+
+const checkIfMaintainer = (access, id) =>
+	access.find((item) => item.id === id).role === "maintainer" ? true : false;
+
 const addNewProject = (e, projectsState, projectsDispatch) => {
 	e.preventDefault();
-	console.log(projectsState);
 	(async () => {
 		try {
 			const newProjectRef = doc(collection(db, "projects"));
@@ -53,4 +60,51 @@ const getProjects = (authState, projectsDispatch) => {
 	})();
 };
 
-export { checkIfAdmin, addNewProject, getProjects };
+const updateProject = (e, projectId, updatedValue, projectsDispatch) => {
+	e.preventDefault();
+	console.log(projectId);
+	(async () => {
+		try {
+			const projectRef = doc(db, "projects", projectId);
+			await updateDoc(projectRef, updatedValue);
+			projectsDispatch({
+				type: "UPDATE_PROJECT",
+				payload: {
+					projectsData: { id: projectId, ...updatedValue },
+					selectedProject: { id: projectId, ...updatedValue },
+				},
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	})();
+};
+
+const deleteProject = (e, projectId, projectsDispatch) => {
+	e.preventDefault();
+	console.log(projectId);
+	(async () => {
+		try {
+			const projectRef = doc(db, "projects", projectId);
+			await deleteDoc(projectRef);
+			projectsDispatch({
+				type: "DELETE_PROJECT",
+				payload: {
+					projectsData: projectId,
+				},
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	})();
+};
+
+export {
+	checkIfAdmin,
+	checkIfDeveloper,
+	checkIfMaintainer,
+	addNewProject,
+	getProjects,
+	updateProject,
+	deleteProject,
+};

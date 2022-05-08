@@ -43,7 +43,8 @@ const NewProjectModal = () => {
 						avatar: authState.avatar,
 						name: authState.name,
 					},
-					issueCount: 0,
+					issueCount: 1,
+					sprintCount: 1,
 					categories: ["Backlog", "To Do", "In Progress", "Done"],
 					access: [
 						{

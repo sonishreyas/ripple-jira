@@ -6,4 +6,30 @@ export {
 	setTestHandler,
 	setFocusHandler,
 } from "./authentication";
-export { checkIfAdmin, addNewProject, getProjects } from "./project-management";
+export {
+	checkIfAdmin,
+	checkIfDeveloper,
+	checkIfMaintainer,
+	addNewProject,
+	getProjects,
+	updateProject,
+	deleteProject,
+} from "./project-management";
+export {
+	addNewIssue,
+	getIssues,
+	getIconForIssueType,
+	getActiveSprintIssues,
+	getIncompleteIssues,
+	getIssuesFromId,
+	getColorForIssueType,
+	updateIssue,
+	deleteIssue,
+	getIssuesByCategory,
+} from "./issues-management";
+export {
+	addNewSprint,
+	getSprints,
+	updateSprint,
+	getSprintById,
+} from "./sprint-management";

@@ -13,12 +13,39 @@
 }
 
 .grid-container .main {
-	grid-column: 1/13;
+	grid-column: 2/13;
 	width: 100%;
   min-height: 100vh;
   max-height: max-content;
   overflow: visible;
 }
+
+.grid-container .nav {
+	max-width: 20rem;
+	grid-column: 1/2;
+  height: 100%;
+}
+
+.nav > * {
+	font-size: inherit;
+	font-weight: bold;
+}
+
+.nav .fas,
+.nav .fa-solid {
+	font-size: 1.5rem;
+}
+.navbar-rp-section {
+	display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+}
+
+.navbar-rp-section > * {
+	padding: 0.4rem;
+}
+
 
 .horizontal-tabs-content {
 	display: block;
@@ -49,7 +76,7 @@
 
 .grid-container .nav-container {
   grid-column: 1/13;
-  grid-row: 1/13;
+  grid-row: 2/13;
 }
 
 
@@ -79,7 +106,6 @@
 
 .project-form-container {
   background: var(--secondary-background-color);
-  width: 32rem;
 }
 
 .project-form-container .basic-card {
@@ -87,6 +113,18 @@
 }
 
 .project-form-container .textbox-label {
+  background-color: var(--primary-color);
+}
+
+.issue-form-container {
+  background: var(--secondary-background-color);
+}
+
+.issue-form-container .basic-card {
+  background-color: var(--primary-color);
+}
+
+.issue-form-container .textbox-label {
   background-color: var(--primary-color);
 }
 .brand-logo {
@@ -97,9 +135,51 @@
   top: 1.8rem;
   left: -6rem;
 }
+
+.issue-card {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+}
+
+.all-grid-columns {
+  grid-column: 1/13 !important;
+}
+
+.border-bottom {
+  border-bottom: 0.2rem solid var(--secondary-background-color);
+}
+
+.bug {
+  color: red;
+}
+
+.story {
+  color: yellow;
+}
+
+.task {
+  color: skyblue;
+}
 @media screen and (max-width: 1180px) {
   .header-nav-icon {
       display: none;
+  }
+  .grid-container .nav {
+    height: 100%;
+    grid-column: 1/6;
+    grid-row: 2/12;
+    background: var(--primary-color);
+    visibility: visible;
+  }
+  .grid-container .main {
+    grid-column: 3/13;
+    width: 100%;
+    min-height: 100vh;
+    max-height: max-content;
+    overflow: visible;
+  }
+  .all-grid-columns {
+    grid-column: 1/13;
   }
 }
 .header-theme-small-icon {
