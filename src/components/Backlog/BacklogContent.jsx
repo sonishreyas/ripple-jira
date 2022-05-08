@@ -16,7 +16,6 @@ const BacklogContent = () => {
 	}, [selectedProject]);
 	return (
 		<main className="main flex-column flex-gap-1">
-			<ActiveSprint />
 			<Sprint />
 			<Backlog />
 		</main>

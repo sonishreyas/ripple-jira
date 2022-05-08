@@ -1,28 +1,24 @@
-import { useIssues, useProjects, useSprints } from "context";
-import { IssueCard, StartSprintButton } from ".";
+import { useSprints } from "context";
+import { IssueCard, EndSprintButton } from ".";
 const Sprint = () => {
 	const { sprintsState } = useSprints();
 	return (
 		<>
-			{sprintsState?.sprintsData?.length ? (
-				sprintsState?.sprintsData?.map(({ id, name, issues }) => (
-					<div className="flex-column justify-content-start" key={id}>
-						<div className="flex-row justify-content-space-between align-center border-bottom py-5">
-							<h4>{name}</h4>
-							{!Object.keys(sprintsState?.activeSprint).length && (
-								<StartSprintButton sprintId={id} />
-							)}
-						</div>
-						<div
-							className="flex-column justify-content-start align-center flex-gap-1"
-							key={id}
-						>
-							{issues.map((item) => (
-								<IssueCard issueId={item} />
-							))}
-						</div>
+			{Object.keys(sprintsState?.sprintsData).length ? (
+				<div className="flex-column justify-content-start">
+					<div className="flex-row justify-content-space-between align-center border-bottom py-5">
+						<h4>{sprintsState?.sprintsData?.name}</h4>
+						<EndSprintButton />
 					</div>
-				))
+					<div
+						className="flex-column justify-content-start flex-gap-1 w-100"
+						key={sprintsState?.sprintsData?.id}
+					>
+						{sprintsState?.sprintsData?.issues.map((item) => (
+							<IssueCard issueId={item} />
+						))}
+					</div>
+				</div>
 			) : (
 				<></>
 			)}

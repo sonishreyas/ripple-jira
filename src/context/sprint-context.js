@@ -7,9 +7,9 @@ import {
 } from "react";
 import { sprintsReducer } from "reducers";
 import { getSprints } from "utils";
-import { useAuth } from "./auth-context";
+import { useProjects } from ".";
 const defaultSprintsState = {
-	sprintsData: [],
+	sprintsData: {},
 	newSprit: {},
 	activeSprint: {},
 };
@@ -22,6 +22,11 @@ const SprintsProvider = ({ children }) => {
 		defaultSprintsState
 	);
 
+	const { projectsState } = useProjects();
+	useEffect(() => {
+		projectsState.selectedProject?.id !== undefined &&
+			getSprints(projectsState.selectedProject.id, sprintsDispatch);
+	}, [projectsState]);
 	return (
 		<SprintsContext.Provider
 			value={{

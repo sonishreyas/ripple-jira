@@ -27,12 +27,13 @@ const addNewSprint = (e, newSprint, sprintsDispatch) => {
 	})();
 };
 
-const getSprints = (sprintsDispatch) => {
+const getSprints = (projectId, sprintsDispatch) => {
 	(async () => {
 		try {
+			console.log(projectId);
 			const q = query(
 				collection(db, "sprints"),
-				where("status", "!=", "completed")
+				where("projectId", "==", projectId)
 			);
 			const querySnapshot = await getDocs(q);
 			const sprintsData = [];
@@ -42,7 +43,12 @@ const getSprints = (sprintsDispatch) => {
 			});
 			sprintsDispatch({
 				type: "GET_SPRINTS",
-				payload: { sprintsData: sprintsData },
+				payload: {
+					sprintsData: sprintsData?.filter((item) => item !== "completed")
+						.length
+						? sprintsData?.filter((item) => item !== "completed")[0]
+						: {},
+				},
 			});
 		} catch (error) {
 			console.log(error);
@@ -50,8 +56,7 @@ const getSprints = (sprintsDispatch) => {
 	})();
 };
 
-const updateSprint = (e, sprintId, updatedValue, sprintsDispatch) => {
-	e.preventDefault();
+const updateSprint = (sprintId, updatedValue, sprintsDispatch) => {
 	console.log(sprintId);
 	(async () => {
 		try {

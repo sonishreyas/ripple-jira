@@ -1,20 +1,25 @@
-import { useIssues, useModal } from "context";
-import { deleteIssue, getIssuesFromId } from "utils";
+import { useIssues, useModal, useSprints } from "context";
+import { deleteIssue, getIssuesFromId, updateIssue, updateSprint } from "utils";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useEffect, useState } from "react";
 
-const IssueCard = ({ issueId }) => {
+const IssueCard = ({ issueId, backlog }) => {
 	const { issuesState, issuesDispatch } = useIssues();
-	const issue = getIssuesFromId(issuesState.issuesData, issueId)[0];
+	const { sprintsState, sprintsDispatch } = useSprints();
+	const [issue, setIssue] = useState({});
 	const { modalDispatch, setShowModal } = useModal();
 	const handleDeleteIssue = (e) => {
 		deleteIssue(e, issueId, issuesDispatch);
 		toast.success("Issue deleted");
 		setShowModal(false);
 	};
-
 	const handleDismissModal = () => setShowModal(false);
 
+	useEffect(() => {
+		issuesState?.issuesData?.length &&
+			setIssue(getIssuesFromId(issuesState.issuesData, issueId)[0]);
+	}, [issuesState]);
 	const handleDeleteModal = () => {
 		modalDispatch({
 			type: "SET_MODAL",
@@ -25,6 +30,14 @@ const IssueCard = ({ issueId }) => {
 			},
 		});
 		setShowModal(true);
+	};
+	const handleMoveToSprint = () => {
+		updateSprint(
+			sprintsState.sprintsData.id,
+			{ issues: [...sprintsState.sprintsData.issues, issueId] },
+			sprintsDispatch
+		);
+		updateIssue(issueId, { category: "To Do" }, issuesDispatch);
 	};
 
 	return (
@@ -45,12 +58,20 @@ const IssueCard = ({ issueId }) => {
 					</span>
 					<h4 className="text-bold">{issue?.summary}</h4>
 				</Link>
-				<div className="flex-row">
+				<div className="flex-row align-center flex-gap-1">
 					<i
 						className="fa-solid fa-trash p-5 cursor-pointer social icons"
 						title="Delete Issue"
 						onClick={handleDeleteModal}
 					></i>
+					{backlog && Object.keys(sprintsState.sprintsData).length && (
+						<button
+							className="outline-btn b-radius-2 p-3"
+							onClick={handleMoveToSprint}
+						>
+							Move to Sprint
+						</button>
+					)}
 				</div>
 			</div>
 		</div>
