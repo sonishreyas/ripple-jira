@@ -14,7 +14,8 @@ const sprintsReducer = (state, { type, payload }) => {
 				...state,
 				activeSprint: payload.activeSprint,
 			};
-
+		case "SPRINT_COMPLETED":
+			return { ...state, activeSprint: payload.activeSprint };
 		case "RESET":
 			return {
 				sprintsData: [],

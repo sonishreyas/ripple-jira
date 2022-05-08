@@ -14,7 +14,6 @@ const BacklogContent = () => {
 			payload: { selectedProject: selectedProject },
 		});
 	}, [selectedProject]);
-	console.log(projectsState);
 	return (
 		<main className="main flex-column flex-gap-1">
 			<ActiveSprint />

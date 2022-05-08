@@ -5,3 +5,4 @@ export { Backlog } from "./Backlog";
 export { Sprint } from "./Sprint";
 export { ActiveSprint } from "./ActiveSprint";
 export { EndSprintButton } from "./EndSprintButton";
+export { IssueCard } from "./IssueCard";

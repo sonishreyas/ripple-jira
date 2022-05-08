@@ -1,9 +1,10 @@
 import { useIssues, useProjects, useSprints } from "context";
+import { toast } from "react-toastify";
 import { addNewSprint, updateProject } from "utils";
 
 const CreateSprintButton = () => {
-	const { sprintsState, sprintsDispatch } = useSprints();
-	const { projectsState } = useProjects();
+	const { sprintsDispatch } = useSprints();
+	const { projectsState, projectsDispatch } = useProjects();
 	const handleCreateSprint = (e) => {
 		const newSprint = {
 			name: `Sprint ${projectsState?.selectedProject?.sprintCount}`,
@@ -11,9 +12,15 @@ const CreateSprintButton = () => {
 			status: "created",
 		};
 		addNewSprint(e, newSprint, sprintsDispatch);
-		updateProject(e, projectsState?.selectedProject?.id, {
-			sprintCount: projectsState?.selectedProject?.sprintCount + 1,
-		});
+		updateProject(
+			e,
+			projectsState?.selectedProject?.id,
+			{
+				sprintCount: projectsState?.selectedProject?.sprintCount + 1,
+			},
+			projectsDispatch
+		);
+		toast("Sprint Created Successfully");
 	};
 	return (
 		<button

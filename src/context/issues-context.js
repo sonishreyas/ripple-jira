@@ -10,8 +10,6 @@ import { getIssues } from "utils";
 import { useAuth } from "./auth-context";
 const defaultIssuesState = {
 	issues: [],
-	activeSprintIssues: [],
-	backlog: [],
 	newIssue: {
 		summary: "",
 		description: "",

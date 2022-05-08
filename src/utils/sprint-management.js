@@ -5,6 +5,7 @@ import {
 	setDoc,
 	getDocs,
 	where,
+	updateDoc,
 } from "firebase/firestore";
 import { db } from "backend/firebase/firebase";
 
@@ -49,4 +50,17 @@ const getSprints = (sprintsDispatch) => {
 	})();
 };
 
-export { addNewSprint, getSprints };
+const updateSprint = (e, sprintId, updatedValue) => {
+	e.preventDefault();
+	console.log(sprintId);
+	(async () => {
+		try {
+			const sprintRef = doc(db, "sprints", sprintId);
+			await updateDoc(sprintRef, updatedValue);
+		} catch (error) {
+			console.log(error);
+		}
+	})();
+};
+
+export { addNewSprint, getSprints, updateSprint };

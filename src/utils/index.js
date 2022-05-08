@@ -9,15 +9,21 @@ export {
 export {
 	checkIfAdmin,
 	checkIfDeveloper,
-	checkIfReadOnly,
+	checkIfMaintainer,
 	addNewProject,
 	getProjects,
 	updateProject,
+	deleteProject,
 } from "./project-management";
 export {
 	addNewIssue,
 	getIssues,
 	getIconForIssueType,
 	getActiveSprintIssues,
+	getIncompleteIssues,
+	getIssuesFromId,
+	getColorForIssueType,
+	updateIssue,
+	deleteIssue,
 } from "./issues-management";
-export { addNewSprint, getSprints } from "./sprint-management";
+export { addNewSprint, getSprints, updateSprint } from "./sprint-management";

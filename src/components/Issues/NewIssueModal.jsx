@@ -1,6 +1,6 @@
 import { useAuth, useIssues, useProjects } from "context";
 import { useState, useEffect } from "react";
-import { addNewIssue, getIconForIssueType } from "utils";
+import { addNewIssue, getIconForIssueType, getColorForIssueType } from "utils";
 import { toast } from "react-toastify";
 const NewIssueModal = () => {
 	const { setShowIssuesModal, issuesState, issuesDispatch } = useIssues();
@@ -64,6 +64,7 @@ const NewIssueModal = () => {
 							type: {
 								name: e.target.value,
 								icon: getIconForIssueType(e.target.value),
+								color: getColorForIssueType("Bug"),
 							},
 						},
 					},
@@ -120,6 +121,7 @@ const NewIssueModal = () => {
 						type: {
 							name: "Bug",
 							icon: getIconForIssueType("Bug"),
+							color: getColorForIssueType("Bug"),
 						},
 						projectId: projectsState.selectedProject.id,
 						linkedIssues: [],
