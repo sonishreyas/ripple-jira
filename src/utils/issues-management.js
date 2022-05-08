@@ -59,4 +59,7 @@ const getIconForIssueType = (type) => {
 			return "fa-solid fa-bookmark";
 	}
 };
-export { addNewIssue, getIssues, getIconForIssueType };
+
+const getActiveSprintIssues = (activeIssues, issues) =>
+	activeIssues.map((item) => issues.find(({ id }) => item === id));
+export { addNewIssue, getIssues, getIconForIssueType, getActiveSprintIssues };

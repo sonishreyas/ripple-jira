@@ -28,6 +28,7 @@ const NewIssueModal = () => {
 					newIssue: {},
 				},
 			});
+			// updateIssueCount(e);
 		} else {
 			toast.warning("Please Enter the Summary");
 		}
@@ -79,17 +80,29 @@ const NewIssueModal = () => {
 				});
 				break;
 			case "ASSIGNEE":
-				issuesDispatch({
-					type: "NEW_ISSUE",
-					payload: {
-						newIssue: {
-							assignee: {
-								name: e.target.value.name,
-								avatar: e.target.value.avatar,
+				e.target.value === "Unassigned"
+					? issuesDispatch({
+							type: "NEW_ISSUE",
+							payload: {
+								newIssue: {
+									assignee: {
+										name: e.target.value.name,
+										avatar: e.target.value.avatar,
+									},
+								},
 							},
-						},
-					},
-				});
+					  })
+					: issuesDispatch({
+							type: "NEW_ISSUE",
+							payload: {
+								newIssue: {
+									assignee: {
+										name: "Unassigned",
+										avatar: `<i className="fa-solid fa-user"></i>`,
+									},
+								},
+							},
+					  });
 				break;
 		}
 	};
@@ -113,11 +126,15 @@ const NewIssueModal = () => {
 						category: "Backlog",
 						subtasks: [],
 						assignee: {
-							name: authState.name,
-							avatar: authState.avatar,
+							name: "Unassigned",
+							avatar: `<i className="fa-solid fa-user"></i>`,
 						},
 						summary: "",
 						description: "",
+						id:
+							projectsState.selectedProject.key +
+							"-" +
+							projectsState.selectedProject.issueCount,
 					},
 				},
 			}),
@@ -240,6 +257,7 @@ const NewIssueModal = () => {
 								className="textbox-content p-5"
 								onChange={(e) => handleValueChange(e, "ASSIGNEE")}
 							>
+								<option value="Unassigned">Unassigned</option>
 								{projectsState?.selectedProject?.access.map((item) => (
 									<option value={item}>{item.name}</option>
 								))}

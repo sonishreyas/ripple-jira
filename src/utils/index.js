@@ -17,4 +17,5 @@ export {
 	addNewIssue,
 	getIssues,
 	getIconForIssueType,
+	getActiveSprintIssues,
 } from "./issues-management";

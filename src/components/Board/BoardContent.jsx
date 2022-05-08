@@ -1,7 +1,7 @@
 import { useProjects } from "context";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
-import { CreateIssueButton } from ".";
+import { CreateIssueButton, SprintBoard } from ".";
 import { ToastContainer } from "react-toastify";
 const BoardContent = () => {
 	const { projectId } = useParams();
@@ -18,9 +18,10 @@ const BoardContent = () => {
 	return (
 		<main className="main flex-column flex-gap-1">
 			<div className="flex-row justify-content-space-between align-center">
-				<h2>Projects</h2>
+				<h2>{selectedProject.name}</h2>
 				<CreateIssueButton />
 			</div>
+			<SprintBoard />
 			{/* <div className="flex-row justify-content-space-between align-center">
 				<UserFilter/>
 				<AddCategoryButton />

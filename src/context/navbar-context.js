@@ -5,7 +5,9 @@ const NavbarContext = createContext({});
 const NavbarProvider = ({ children }) => {
 	const [showNavbar, setShowNavbar] = useState(false);
 	useEffect(() => {
-		window.addEventListener("resize", () => setShowNavbar(false));
+		if (window.width <= 768)
+			window.addEventListener("resize", () => setShowNavbar(false));
+		else setShowNavbar(true);
 	}, []);
 	return (
 		<NavbarContext.Provider value={{ showNavbar, setShowNavbar }}>
