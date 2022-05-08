@@ -10,16 +10,16 @@ const updateSprintsData = (data, sprint) =>
 const sprintsReducer = (state, { type, payload }) => {
 	switch (type) {
 		case "GET_SPRINTS":
-			return { sprintsData: payload.sprintsData };
+			return { ...state, sprintsData: payload.sprintsData };
 		case "ADD_NEW_SPRINT":
 			return {
 				...state,
-				sprintsData: [...state.sprintsData, { ...payload.sprintsData }],
+				sprintsData: { ...payload.sprintsData },
 			};
 		case "UPDATE_SPRINT":
 			return {
 				...state,
-				sprintsData: updateSprintsData(state.sprintsData, payload.sprintsData),
+				sprintsData: { ...state.sprintsData, ...payload.sprintsData },
 			};
 		case "DELETE_SPRINT":
 			return { ...state };

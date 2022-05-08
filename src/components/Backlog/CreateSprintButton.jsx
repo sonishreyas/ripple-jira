@@ -10,6 +10,7 @@ const CreateSprintButton = () => {
 			name: `Sprint ${projectsState?.selectedProject?.sprintCount}`,
 			issues: [],
 			status: "created",
+			projectId: projectsState?.selectedProject?.id,
 		};
 		addNewSprint(e, newSprint, sprintsDispatch);
 		updateProject(

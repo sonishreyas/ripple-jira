@@ -68,7 +68,7 @@ const deleteIssue = (e, issueId, issuesDispatch) => {
 	})();
 };
 
-const updateIssue = (e, issueId, updatedIssue, issuesDispatch) => {
+const updateIssue = (issueId, updatedIssue, issuesDispatch) => {
 	(async () => {
 		try {
 			const issueRef = doc(db, "issues", issueId);

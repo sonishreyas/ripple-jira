@@ -13,49 +13,25 @@ const EndSprintButton = () => {
 	const { sprintsState, sprintsDispatch } = useSprints();
 	const { projectsState } = useProjects();
 	const handleCompleteSprint = (e) => {
-		const activeSprint = getSprintById(
-			sprintsState?.activeSprint,
-			sprintsState.sprintsData
-		);
 		const incompleteIssues = getIncompleteIssues(
-			activeSprint.issues,
+			sprintsState.sprintsData.issues,
 			issuesState.issuesData
 		);
 		const updatedSprint = {
-			issuesCount: activeSprint.issues.length,
-			issuesCompleted: activeSprint.issues.length - incompleteIssues.length,
+			issuesCount: sprintsState.sprintsData.issues.length,
+			issuesCompleted:
+				sprintsState.sprintsData.issues.length - incompleteIssues.length,
 			issuesIncomplet: incompleteIssues.length,
 			status: "completed",
 		};
-		updateSprint(e, activeSprint.id, updatedSprint);
-		const remainingSprints = sprintsState.sprintsData.filter(
-			(item) => item.id !== activeSprint.id
-		);
-		sprintsDispatch({
-			type: "SPRINT_COMPLETED",
-			payload: {
-				activeSprint: "",
-				sprintsData: sprintsState?.sprintsData?.reduce(
-					(prev, curr) =>
-						curr.id === activeSprint?.id
-							? [...prev, { ...curr, status: "completed" }]
-							: [...prev, ...curr],
-					[]
-				),
-			},
-		});
-		if (remainingSprints.length > 1) {
-			updateSprint(e, remainingSprints[0].id, {
-				issues: [...remainingSprints.issues, ...incompleteIssues],
-			});
-		} else {
-			const newSprint = {
-				name: `Sprint ${projectsState?.selectedProject?.sprintCount}`,
-				issues: incompleteIssues,
-				status: "created",
-			};
-			addNewSprint(e, newSprint, sprintsDispatch);
-		}
+		updateSprint(sprintsState.sprintsData.id, updatedSprint, sprintsDispatch);
+
+		const newSprint = {
+			name: `Sprint ${projectsState?.selectedProject?.sprintCount}`,
+			issues: incompleteIssues,
+			status: "created",
+		};
+		addNewSprint(e, newSprint, sprintsDispatch);
 		toast.success("Sprint Completed");
 		setShowModal(false);
 	};
