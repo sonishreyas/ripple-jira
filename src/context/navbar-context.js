@@ -9,7 +9,7 @@ const NavbarProvider = ({ children }) => {
 			setShowNavbar(false);
 			window.addEventListener("resize", () => setShowNavbar(false));
 		} else if (window.innerWidth > 768) {
-			window.addEventListener("resize", () => setShowNavbar(true));
+			setShowNavbar(true);
 		} else setShowNavbar(true);
 	}, []);
 	return (
