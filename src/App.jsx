@@ -25,7 +25,7 @@ export default function App() {
 	const { showModal } = useModal();
 	const { showIssuesModal } = useIssues();
 	const location = useLocation();
-
+	console.log(showNavbar);
 	return (
 		<div className="grid-container">
 			<Header />

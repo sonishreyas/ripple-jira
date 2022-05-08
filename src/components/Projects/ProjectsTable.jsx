@@ -1,31 +1,31 @@
 import { useAuth, useModal, useProjects } from "context";
 import { Link } from "react-router-dom";
-import { checkIfAdmin } from "utils";
+import { checkIfAdmin, deleteProject } from "utils";
 import { toast } from "react-toastify";
 export const ProjectsTable = () => {
-	const { projectsState } = useProjects();
+	const { projectsState, projectsDispatch } = useProjects();
 	const { authState } = useAuth();
 	const { modalDispatch, setShowModal } = useModal();
-	const handleDeleteProject = () => {
-		// deleteProject();
+	const handleDeleteProject = (e, id) => {
+		console.log(id);
+		deleteProject(e, id, projectsDispatch);
 		toast.success("Project deleted");
 		setShowModal(false);
 	};
 
 	const handleDismissModal = () => setShowModal(false);
 
-	const handleDeleteModal = () => {
+	const handleDeleteModal = (e, id) => {
 		modalDispatch({
 			type: "SET_MODAL",
 			payload: {
 				message: "Are you sure you want to delete this project ?",
-				handleConfirm: handleDeleteProject,
+				handleConfirm: () => handleDeleteProject(e, id),
 				handleDismiss: handleDismissModal,
 			},
 		});
 		setShowModal(true);
 	};
-
 	return (
 		<table>
 			<thead>
@@ -58,8 +58,8 @@ export const ProjectsTable = () => {
 								<td>
 									<i
 										className="fa-solid fa-trash p-5 cursor-pointer social icons"
-										title="Delete Habit"
-										onClick={handleDeleteModal}
+										title="Delete Project"
+										onClick={(e) => handleDeleteModal(e, id)}
 									></i>
 								</td>
 							)}

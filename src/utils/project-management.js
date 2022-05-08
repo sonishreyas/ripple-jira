@@ -82,7 +82,7 @@ const updateProject = (e, projectId, updatedValue, projectsDispatch) => {
 
 const deleteProject = (e, projectId, projectsDispatch) => {
 	e.preventDefault();
-
+	console.log(projectId);
 	(async () => {
 		try {
 			const projectRef = doc(db, "projects", projectId);
